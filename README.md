@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React + JavaScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -46,8 +46,8 @@ export default tseslint.config({
   },
   rules: {
     // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
+    // Enable its recommended javascript rules
+    ...reactX.configs['recommended-javascript'].rules,
     ...reactDom.configs.recommended.rules,
   },
 })

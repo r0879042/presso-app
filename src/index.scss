@@ -1,3 +1,9 @@
+// iam Import my  component SCSS files here:
+@use "./styles/FindProduct.scss";
+@use "./styles/Vertuo.scss";
+@use "./styles/main.scss"; // by choice 
+@use "bootstrap";
+
 // Global styles and variables
 :root {
   --font-main: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -32,10 +38,5 @@ a {
     color: var(--text-hover);
   }
 }
-
-// iam Import my  component SCSS files here:
-@import "./styles/FindProduct.scss";
-@import "./styles/Vertuo.scss";
-@import "./styles/main.scss"; // by choice 
 
 
