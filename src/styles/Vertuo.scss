@@ -1,0 +1,110 @@
+.vertuo-page {
+    background: #f5f1eb;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  
+    .header {
+      padding: 1rem;
+  
+      .back-btn {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #222;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+  
+      .toggle-buttons {
+        gap: 1rem;
+  
+        .btn {
+          border-radius: 1rem;
+          padding: 0.4rem 1rem;
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+  
+        .original {
+          border-color: #ccc;
+        }
+  
+        .active {
+          background-color: #fff;
+          color: #000;
+        }
+      }
+  
+      .search-bar {
+        margin-top: 1rem;
+        position: relative;
+        input {
+          width: 100%;
+          padding: 0.6rem 2.5rem 0.6rem 2.5rem;
+          border-radius: 0.4rem;
+          border: none;
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+          font-size: 1rem;
+        }
+  
+        .search-icon {
+          position: absolute;
+          top: 50%;
+          left: 1rem;
+          transform: translateY(-50%);
+          font-size: 1.2rem;
+          color: #444;
+        }
+      }
+    }
+  
+    .capsule-section {
+      padding: 1rem;
+      flex-grow: 1;
+      overflow-y: auto;
+  
+      .group-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+  
+      .capsule-card {
+        margin-bottom: 1rem;
+  
+        .capsule-img-box {
+          background: #fff;
+          border-radius: 1rem;
+          padding: 0.5rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+        }
+  
+        .capsule-label {
+          font-size: 0.9rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  
+    .bottom-nav {
+      background: #fff;
+      padding: 0.5rem 0;
+      border-top: 1px solid #ddd;
+  
+      .nav-icon {
+        color: #000;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+      }
+    }
+  }
+  

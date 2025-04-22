@@ -1,0 +1,120 @@
+.find-product-page {
+  background-color: #f2eee9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 80px; //  i will make space for nav later 
+
+  .header h5 {
+    margin: 0 0 1rem;
+    color: #ccc;
+  }
+
+  .top-toggle {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+
+    button {
+      background: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+
+      &.active {
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .search-wrapper {
+    position: relative;
+    margin: 0 0 1rem;
+
+    input {
+      width: 100%;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: #f9f7f3;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+    }
+  }
+
+  .section-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .capsule-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    .capsule-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      font-size: 0.85rem;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #ddd;
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #444;
+
+      &.active {
+        color: black;
+        font-weight: bold;
+      }
+
+      span {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

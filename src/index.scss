@@ -1,0 +1,41 @@
+// Global styles and variables
+:root {
+  --font-main: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --text-color: #646cff;
+  --text-hover: #535bf2;
+  --bg-color: #f4f0ea;
+  --dark-bg: #242424;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  line-height: 1.5;
+  font-weight: 400;
+  color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: inherit;
+
+  &:hover {
+    color: var(--text-hover);
+  }
+}
+
+// iam Import my  component SCSS files here:
+@import "./styles/FindProduct.scss";
+@import "./styles/Vertuo.scss";
+@import "./styles/main.scss"; // by choice 
+
+

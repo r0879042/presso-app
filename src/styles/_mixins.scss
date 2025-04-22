@@ -1,0 +1,16 @@
+
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin responsive($bp) {
+    @if $bp == phone {
+      @media (max-width: 480px) {
+        @content;
+      }
+    }
+  }
+  
