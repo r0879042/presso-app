@@ -20,7 +20,7 @@ Presso is a  Progressive Web App designed to help users explore and find Nespres
 
 - Frontend: React, Vite
 - Styling: SCSS, Bootstrap 5
-- Icons: React Icons (Bootstrap, FontAwesome)
+- Icons: React Icons (FontAwesome)
 - State: React useState & props
 - Deployment: GitHub Pages / Netlify (optional)
 
