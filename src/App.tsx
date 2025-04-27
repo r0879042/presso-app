@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import FindProduct from './pages/FindProduct';
 import Vertuo from './pages/Vertuo';
@@ -6,6 +5,8 @@ import Flavour from './pages/Flavour';
 import Connect from './pages/Connect';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+
+
 
 function App() {
   return (

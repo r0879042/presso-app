@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import capsules from "../data/products.json";
 import "../styles/FindProduct.scss";
+import { Link, useNavigate } from "react-router-dom";
+import SearchBar from '../components/SearchBar';
+import products from '../data/products.json';
+import Navbar from '../components/Navbar';
 
 function FindProduct() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("Original");
 
@@ -27,51 +32,34 @@ function FindProduct() {
         </button>
         <button
           className={type === "Vertuo" ? "active" : ""}
-          onClick={() => setType("Vertuo")}
+          onClick={() => navigate("/vertuo")}
         >
           <span className="icon">🛍️</span> Vertuo
         </button>
       </div>
 
-      <div className="search-wrapper">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <span className="search-icon">🔍</span>
-      </div>
+      {/* Our new SearchBar component */}
+      <SearchBar data={products} onSelect={(item) => setSelected(item)} />
 
       <h4 className="section-title">World Explorations</h4>
 
       <div className="capsule-grid">
         {filteredCapsules.map((capsule, idx) => (
-          <div className="capsule-card" key={idx}>
+          
+          <Link
+            to="/flavour"
+            state={{ capsule, from: '/find-product' }}  // Passing the capsule data and source page
+            key={idx}
+            className="col-4 text-center capsule-card"  // Assuming col-4 is part of Bootstrap grid
+          >
             <img src={`/capsules/${capsule.image}`} alt={capsule.name} />
             <p>{capsule.name}</p>
-          </div>
+          </Link>
+
         ))}
       </div>
-
-      <div className="bottom-nav">
-        <div className="nav-item">
-          <span>🏠</span>
-          <p>Home</p>
-        </div>
-        <div className="nav-item active">
-          <span>🧃</span>
-          <p>Find</p>
-        </div>
-        <div className="nav-item">
-          <span>🏛️</span>
-          <p>Quiz</p>
-        </div>
-        <div className="nav-item">
-          <span>🛒</span>
-          <p>Cart</p>
-        </div>
-      </div>
+      <Navbar />
+      
     </div>
   );
 }
