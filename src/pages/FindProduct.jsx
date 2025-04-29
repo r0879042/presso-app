@@ -50,7 +50,7 @@ function FindProduct() {
             to="/flavour"
             state={{ capsule, from: '/find-product' }}  // Passing the capsule data and source page
             key={idx}
-            className="col-4 text-center capsule-card"  // Assuming col-4 is part of Bootstrap grid
+            className="capsule-card"
           >
             <img src={`/capsules/${capsule.image}`} alt={capsule.name} />
             <p>{capsule.name}</p>
