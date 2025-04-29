@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import '../styles/Flavour.scss';
 
-
 const Flavour = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,30 +12,34 @@ const Flavour = () => {
   if (!capsule) return <div>Capsule data not found.</div>;
 
   return (
-    <div className="flavour-page container-fluid">
+    <div className="flavour-page">
       <Previous onClick={() => navigate(fromPage)} />
 
-      <div className="capsule-img-box text-center mt-4">
-        <img src={`/capsules/${capsule.image}`} alt={capsule.name} className="capsule-img" />
-      </div>
+      <div className="flavour-content">
+        <div className="capsule-img-box">
+          <img src={`/capsules/${capsule.image}`} alt={capsule.name} className="capsule-img" />
+        </div>
 
-      <div className="capsule-info d-flex justify-content-between align-items-center p-3">
-        <strong>{capsule.name}</strong>
-        <button className="btn btn-success">Add to cart</button>
-      </div>
+        <div className="capsule-info">
+          <strong className="capsule-name">{capsule.name}</strong>
+          <button
+            className="add-to-cart-btn"
+            onClick={() => navigate('/bag', { state: { capsule } })}
+          >
+            Add to cart
+          </button>
+        </div>
 
-      <div className="capsule-description p-3">
-        <p><strong>Spicy & Woody</strong></p>
-        <p>
-          Inspired by multicultural Palermo where coffee is a ritual, this dark
-          roast blend of Robusta and Arabica brings spicy, woody and cocoa notes.
-        </p>
-        <div className="tasting-modes d-flex justify-content-between mt-4">
-          <div className="mode">
-            <i className="bi bi-cup"></i> Ristretto 25 ml
-          </div>
-          <div className="mode">
-            <i className="bi bi-cup"></i> Espresso 40 ml
+        <div className="capsule-description">
+          <p className="flavour-title">Spicy & Woody</p>
+          <p className="flavour-text">
+            Inspired by multicultural Palermo where coffee is a ritual, 
+            this dark roast blend of Robusta and Arabica brings spicy, woody and cocoa notes.
+          </p>
+
+          <div className="tasting-modes">
+            <div className="mode">Ristretto 25 ml</div>
+            <div className="mode">Espresso 40 ml</div>
           </div>
         </div>
       </div>
