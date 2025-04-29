@@ -1,0 +1,90 @@
+.bag-page {
+  background-color: #f8f5ef;
+  min-height: 100vh;
+  padding-bottom: 80px; // space for bottom navbar
+
+  h2 {
+    text-align: center;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #000;
+  }
+}
+
+.bag-image img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.bag-item {
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.capsule-thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.capsule-name {
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  color: #000;
+  margin-left: 12px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    padding: 0;
+    font-weight: bold;
+    background-color: #52A867;
+    border: none;
+    color: white;
+  }
+}
+
+.quantity-number {
+  min-width: 20px;
+  text-align: center;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  color: #000;
+}
+
+.pay-button {
+  margin-top: 32px;
+  text-align: center;
+
+  .pay-btn {
+    width: 70%;
+    height: 44px;
+    border-radius: 22px;
+    background-color: #52A867;
+    border: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #449857;
+    }
+  }
+}

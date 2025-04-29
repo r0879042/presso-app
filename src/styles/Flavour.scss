@@ -1,0 +1,89 @@
+.flavour-page {
+  background-color:#f8f5ef; // Your dark brown background
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.flavour-content {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin-top: 40px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capsule-img-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  .capsule-img {
+    max-height: 90px;
+    object-fit: contain;
+  }
+}
+
+.capsule-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .capsule-name {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: #000;
+  }
+
+  .add-to-cart-btn {
+    background-color: #52A867;
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #449857;
+    }
+  }
+}
+
+.capsule-description {
+  width: 100%;
+
+  .flavour-title {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #000;
+  }
+
+  .flavour-text {
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    color: #000;
+    margin-bottom: 16px;
+  }
+}
+
+.tasting-modes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .mode {
+    font-family: 'Georgia', serif;
+    font-size: 0.85rem;
+    color: #000;
+  }
+}

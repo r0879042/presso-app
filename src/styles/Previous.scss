@@ -1,0 +1,24 @@
+.previous-wrapper {
+    background-color: #f8f5ef; // light beige from the mockup
+    padding: 1rem;
+  
+    button {
+      border: none;
+      background: transparent;
+      font-weight: bold;
+      color: #000;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+  
+      svg {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  

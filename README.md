@@ -1,55 +1,40 @@
-# React + JavaScript + Vite
+# ☕ Presso - Coffee Capsule Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Presso is a  Progressive Web App designed to help users explore and find Nespresso coffee capsules with ease. Built using **React + Vite**, styled with **Bootstrap and SCSS**, and optimized for mobile.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Features some i have worked on so orthers not yet 
 
-## Expanding the ESLint configuration
+- Toggle between Original and Vertuo capsules
+- Search bar with autocomplete
+- Capsule grid display by flavor and type
+- Dedicated pages for Cart, Checkout, and Connect
+- Fully responsive design (mobile-first)
+- Stripe-ready (coming soon)
+- Printing support & analytics (coming soon)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠 Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Frontend: React, Vite
+- Styling: SCSS, Bootstrap 5
+- Icons: React Icons (FontAwesome)
+- State: React useState & props
+- Deployment: GitHub Pages / Netlify (optional)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended javascript rules
-    ...reactX.configs['recommended-javascript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-# presso-app
+## 🧑‍💻 Getting Started
+
+```bash
+# clone the repo
+git clone https://github.com/r0879042/presso-app.git
+
+# To go into the project
+cd presso-app
+
+
+#  Tu run in dev mode
+npm run dev

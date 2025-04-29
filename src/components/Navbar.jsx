@@ -1,11 +1,34 @@
-export default function Navbar() {
-    return (
-      <nav className="navbar fixed-bottom navbar-light bg-light d-flex justify-content-around">
-        <i className="bi bi-search"></i>
-        <i className="bi bi-cup-straw"></i>
-        <i className="bi bi-bag"></i>
-        <i className="bi bi-person"></i>
-      </nav>
-    );
-  }
-  
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Navbar.scss';
+import homeIcon from "../assets/icons/adress.svg";
+import findIcon from "../assets/icons/discover.svg";
+import quizIcon from "../assets/icons/quiz.svg";
+import cartIcon from "../assets/icons/cart.svg";
+
+const Navbar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="navbar">
+      <div className="nav-item" onClick={() => navigate('/')}>
+        <img src={homeIcon} alt="Home" className='nav-icon' />
+        <span>Home</span>
+      </div>
+      <div className="nav-item" onClick={() => navigate('/find')}>
+        <img src={findIcon} alt="Find" className='nav-icon'/>
+        <span>Find</span>
+      </div>
+      <div className="nav-item" onClick={() => navigate('/quiz')}>
+        <img src={quizIcon} alt="Quiz" className='nav-icon' />
+        <span>Quiz</span>
+      </div>
+      <div className="nav-item" onClick={() => navigate('/cart')}>
+        <img src={cartIcon} alt="Cart" className='nav-icon' />
+        <span>Cart</span>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

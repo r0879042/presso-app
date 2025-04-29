@@ -1,38 +1,37 @@
 [
-    {
-      "name": "Vienna lungo",
-      "type": "Mug (230 ml)",
-      "image": "Vienna lungo.jpg"
-    },
-    {
-      "name": "Stockholm lungo",
-      "type": "Mug (230 ml)",
-      "image": "/images/vertuo/stockholm.png"
-    },
-    {
-      "name": "Cape Town lungo",
-      "type": "Mug (230 ml)",
-      "image": "/images/vertuo/cape-town.png"
-    },
-    {
-      "name": "Shanghai lungo",
-      "type": "Mug (230 ml)",
-      "image": "/images/vertuo/shanghai.png"
-    },
-    {
-      "name": "Tokyo lungo",
-      "type": "Mug (230 ml)",
-      "image": "/images/vertuo/tokyo.png"
-    },
-    {
-      "name": "Paris Espresso",
-      "type": "Mug (230 ml)",
-      "image": "/images/vertuo/paris.png"
-    },
-    {
-      "name": "Istanbul espresso",
-      "type": "Double Espresso (80ml)",
-      "image": "/images/vertuo/istanbul.png"
-    }
-  ]
-  
+{
+  "name": "Vienna lungo",
+  "type": "Vertuo",
+  "image": "Vienna lungo.jpg"
+},
+{
+  "name": "Stockholm lungo",
+  "type": "Vertuo",
+  "image": "Stockholm lungo.jpg"
+},
+{
+  "name": "Cape Town lungo",
+  "type": "Vertuo",
+  "image": "Cape Town lungo.jpg"
+},
+{
+  "name": "Shanghai lungo",
+  "type": "Vertuo",
+  "image": "Shanghai lungo.jpg"
+},
+{
+  "name": "Tokyo lungo",
+  "type": "Vertuo",
+  "image": "Tokyo lungo.jpg"
+},
+{
+  "name": "Paris Espresso",
+  "type": "Vertuo",
+  "image": "Paris Espresso.jpg"
+},
+{
+  "name": "Vienna lungo",
+  "type": "Vertuo",
+  "image": "Vienna lungo.jpg"
+}
+]

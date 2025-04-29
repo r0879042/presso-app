@@ -1,12 +1,26 @@
-export default function Checkout() {
-    return (
-      <div className="container py-4 text-center">
-        <div className="alert alert-success">
-          <strong>Payment Success!</strong>
-          <p>Your order has been placed.</p>
-        </div>
-        <button className="btn btn-success">Back to home</button>
-      </div>
-    );
-  }
-  
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Checkout.scss';
+
+const Checkout = () => {
+  const navigate = useNavigate();
+
+  const handlePayment = () => {
+    // Simulate successful payment after 2 seconds
+    setTimeout(() => {
+      navigate('/payment-success');
+    }, 2000);
+  };
+
+  return (
+    <div className="checkout-page">
+      <h2>Checkout</h2>
+      <p>Secure your payment via Stripe</p>
+      <button className="pay-now-btn" onClick={handlePayment}>
+        Pay Now
+      </button>
+    </div>
+  );
+};
+
+export default Checkout;
