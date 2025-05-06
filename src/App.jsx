@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Find from './pages/Find';
 import Vertuo from './pages/Vertuo';
@@ -9,6 +8,7 @@ import Checkout from './pages/Checkout';
 import TastingPage from './pages/TastingPage';
 import SessionCode from './pages/SessionCode';
 
+import Quiz from './pages/Quiz';
 
 function App() {
   return (
@@ -21,6 +21,8 @@ function App() {
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode />} />
+
+      <Route path="/quiz" element={<Quiz />} />
     </Routes>
   );
 }
