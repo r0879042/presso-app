@@ -1,16 +1,42 @@
+// /src/styles/_mixins.scss
 
+$breakpoints: (
+  'phone': 480px,
+  'tablet': 768px,
+  'desktop': 1024px,
+  'large-desktop': 1200px
+);
 
-@mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  @mixin responsive($bp) {
-    @if $bp == phone {
-      @media (max-width: 480px) {
-        @content;
-      }
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) {
+      @content;
     }
+  } @else {
+    @warn "No value found for breakpoint: #{$breakpoint}.";
   }
-  
+}
+
+@mixin pill-button($bg-color: #52A867, $text-color: #fff) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@mixin flexbox($direction: row, $justify: center, $align: center, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}

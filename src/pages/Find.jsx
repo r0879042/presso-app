@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import capsules from "../data/products.json";
-import "../styles/FindProduct.scss";
+import "../styles/Find.scss";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from '../components/SearchBar';
 import products from '../data/products.json';
 import Navbar from '../components/Navbar';
 
-function FindProduct() {
+function Find() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("Original");
@@ -48,7 +48,7 @@ function FindProduct() {
           
           <Link
             to="/flavour"
-            state={{ capsule, from: '/find-product' }}  // Passing the capsule data and source page
+            state={{ capsule, from: '/find' }}  // Passing the capsule data and source page
             key={idx}
             className="capsule-card"
           >
@@ -64,4 +64,5 @@ function FindProduct() {
   );
 }
 
-export default FindProduct;
+export default Find
+;

@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar';
 import products from '../data/vertuo.json';
 
 
+
 function Vertuo() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");

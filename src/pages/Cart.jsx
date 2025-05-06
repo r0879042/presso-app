@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
-import '../styles/Bag.scss';
+import '../styles/Cart.scss';
 
-const Bag = () => {
+const Cart = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const capsule = location.state?.capsule;
@@ -55,4 +55,4 @@ const Bag = () => {
   );
 };
 
-export default Bag;
+export default Cart;

@@ -1,0 +1,23 @@
+// Mobile First Design (default styles) apply normally
+// Then override for bigger devices using media queries
+
+// Small tablets and larger (portrait mode) - from 600px up
+@mixin respond-to-tablet {
+    @media (min-width: 600px) {
+      @content;
+    }
+  }
+  
+  // Large tablets and small laptops - from 768px up
+  @mixin respond-to-large-tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  
+  // Desktop and large kiosk screens - from 1200px up
+  @mixin respond-to-desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
