@@ -1,15 +1,15 @@
+
 .bag-page {
   background-color: #f8f5ef;
   min-height: 100vh;
-  padding-bottom: 80px; // space for bottom navbar
+  padding-bottom: 80px; // space for navbar
 
   h2 {
-    text-align: center;
     font-family: 'Georgia', serif;
     font-weight: bold;
-    margin-top: 1rem;
     font-size: 1.5rem;
-    color: #000;
+    margin-top: 1rem;
+    text-align: center;
   }
 }
 
@@ -24,7 +24,7 @@
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 16px;
-  margin: 16px 0;
+  margin: 12px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,9 +54,6 @@
     border-radius: 8px;
     padding: 0;
     font-weight: bold;
-    background-color: #52A867;
-    border: none;
-    color: white;
   }
 }
 
@@ -64,27 +61,16 @@
   min-width: 20px;
   text-align: center;
   font-size: 1rem;
-  font-family: 'Georgia', serif;
-  color: #000;
 }
 
-.pay-button {
-  margin-top: 32px;
-  text-align: center;
-
-  .pay-btn {
-    width: 70%;
-    height: 44px;
-    border-radius: 22px;
-    background-color: #52A867;
-    border: none;
-    font-weight: bold;
-    color: white;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #449857;
-    }
-  }
+.pay-button .pay-btn {
+  width: 70%;
+  height: 40px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #52A867;
+  color: white;
+  margin-top: 24px;
+  
 }

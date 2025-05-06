@@ -24,7 +24,7 @@ const Flavour = () => {
           <strong className="capsule-name">{capsule.name}</strong>
           <button
             className="add-to-cart-btn"
-            onClick={() => navigate('/bag', { state: { capsule } })}
+            onClick={() => navigate('/cart', { state: { capsule } })}
           >
             Add to cart
           </button>

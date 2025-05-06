@@ -15,7 +15,7 @@ const Navbar = () => {
         <img src={homeIcon} alt="Home" className='nav-icon' />
         <span>Home</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/find')}>
+      <div className="nav-item" onClick={() => navigate('/Find')}>
         <img src={findIcon} alt="Find" className='nav-icon'/>
         <span>Find</span>
       </div>
@@ -23,7 +23,7 @@ const Navbar = () => {
         <img src={quizIcon} alt="Quiz" className='nav-icon' />
         <span>Quiz</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/cart')}>
+      <div className="nav-item" onClick={() => navigate('/Bag')}>
         <img src={cartIcon} alt="Cart" className='nav-icon' />
         <span>Cart</span>
       </div>

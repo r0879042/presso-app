@@ -1,24 +1,29 @@
 import { Routes, Route } from 'react-router-dom';
-import FindProduct from './pages/FindProduct';
+import Find from './pages/Find';
 import Vertuo from './pages/Vertuo';
 import Flavour from './pages/Flavour';
-import Connect from './pages/Connect';
-import Cart from './pages/Edit';
 import Checkout from './pages/Checkout';
-import Bag from './pages/Bag';
+import Cart from './pages/Cart';
+import TastingPage from './pages/TastingPage';
+import SessionCode from './pages/SessionCode';
+import PaymentSucess from './pages/PaymentSucess';
 
 
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<FindProduct />} />
+      <Route path="/find" element={<Find />} />
       <Route path="/vertuo" element={<Vertuo />} />
-      <Route path="/flavour" element={<Flavour />} />
-      <Route path="/connect" element={<Connect />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/bag" element={<Bag />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/tastingpage" element={<TastingPage />} />
+      <Route path="/sessioncode" element={<SessionCode />} />
+      <Route path="/flavour" element={<Flavour />} />
+      <Route path="/paymentsucess" element={<PaymentSucess/>} />
+      
+
+
     </Routes>
   );
 }
