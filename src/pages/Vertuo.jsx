@@ -53,7 +53,7 @@ function Vertuo() {
           to="/flavour"
           state={{ capsule, from: '/vertuo' }} 
           key={idx}
-          className="col-4 text-center capsule-card"
+          className="capsule-card"
         >
           <div className="capsule-card" key={idx}>
             <img src={`/capsules/${capsule.image}`} alt={capsule.name} />

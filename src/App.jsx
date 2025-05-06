@@ -8,12 +8,15 @@ import Checkout from './pages/Checkout';
 import TastingPage from './pages/TastingPage';
 import SessionCode from './pages/SessionCode';
 
+import QuizStart from './pages/QuizStart';
 import Quiz from './pages/Quiz';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Find />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/find" element={<FindProduct />} />
       <Route path="/vertuo" element={<Vertuo />} />
       <Route path="/flavour" element={<Flavour />} />
       <Route path="/cart" element={<Cart />} />
@@ -22,6 +25,7 @@ function App() {
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode />} />
 
+      <Route path="/quizstart" element={<QuizStart />} />
       <Route path="/quiz" element={<Quiz />} />
     </Routes>
   );

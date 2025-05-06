@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
+  const navigate = useNavigate();
+
   const question1 = "What’s your go-to drink to start your day ?";
   const options1 = [
     'strong and bold',
@@ -20,8 +23,13 @@ const Quiz = () => {
   ];
 
   const previousQuestion = () => {
-    setCurrentQuestion(question1);
-    setCurrentOptions(options1);
+    if(currentQuestion == question1){
+      navigate(-1);
+    }
+    else{
+      setCurrentQuestion(question1);
+      setCurrentOptions(options1);
+    }
   };
 
   const nextQuestion = () => {

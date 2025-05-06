@@ -1,0 +1,56 @@
+.home-page {
+    padding: 2rem;
+  
+    a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #888;
+  
+      &:hover {
+        color: #555;
+      }
+    }
+  
+    .options-wrapper {
+      margin-top: 2rem;
+    }
+  
+    .circle-option {
+      cursor: pointer;
+      text-align: center;
+  
+      img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+      }
+  
+      .label {
+        margin-top: 0.75rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #333;
+      }
+  
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    @media (max-width: 576px) {
+        .home-page .circle-option img {
+          width: 120px;
+          height: 120px;
+        }
+    }
+  
+    @media (min-width: 992px) {
+      .row {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  }
