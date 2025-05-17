@@ -4,8 +4,7 @@
     align-items: center;
     background-color: #ffffff;
     border-top: 1px solid #ccc;
-    //padding: 12px 24px;
-    position: fixed;
+    position: fixed !important;
     bottom: 0;
     left: 0;
     right: 0;
@@ -20,17 +19,31 @@
     align-items: center;
     text-align: center;
     color: #000000;
-    font-family: 'Georgia', serif;
-    font-size: 0.95rem;
+    font-size: 1.5rem;
     cursor: pointer;
     
     .nav-icon {
-      width: 28px;
-      height: 28px;
+      width: 80px;
+      height: 80px;
       margin-bottom: 4px;
     }
   
     span {
       margin-top: 2px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    
+  }
+
+  @media (max-width: 576px) {
+    .nav-item {
+      font-size: 0.95rem;
+      .nav-icon {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 4px;
+      }
     }
   }

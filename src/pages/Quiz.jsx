@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Previous from '../components/Previous';
+import { Button, Container, Form } from 'react-bootstrap';
+
 
 const Quiz = () => {
   const navigate = useNavigate();
-
-  const question1 = "What’s your go-to drink to start your day ?";
-  const options1 = [
-    'strong and bold',
-    'smooth and comforting.',
-    'A sweet treat with a touch of coffee.',
-    'I’m open to exploring!.'
-  ];
-  const [currentQuestion, setCurrentQuestion] = useState(question1);
-  const [currentOptions, setCurrentOptions] = useState(options1);
+  const [currentQuestionId, setCurrentQuestionId] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [currentOptions, setCurrentOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
 
+  useEffect(() => {
+    setQuestion(1);
+  }, []);
+ 
   const question2 = "Do you prefer a specific cup size?";
   const options2 = [
     'Small',
@@ -22,63 +22,71 @@ const Quiz = () => {
     'Large and filling'
   ];
 
+  const setQuestion = (id) => {
+    fetch('http://127.0.0.1:8000/api/question/' + id)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setCurrentQuestionId(id);
+        setCurrentQuestion(data[0].question);
+        setCurrentOptions(data[0].answers);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   const previousQuestion = () => {
-    if(currentQuestion == question1){
+    if(currentQuestionId === 1){
       navigate(-1);
     }
     else{
-      setCurrentQuestion(question1);
-      setCurrentOptions(options1);
+      setQuestion(currentQuestionId - 1);
     }
   };
 
   const nextQuestion = () => {
-    setCurrentQuestion(question2);
-    setCurrentOptions(options2);
+     setQuestion(currentQuestionId + 1);
   };
 
   return  (
-    <div className="d-flex flex-column min-vh-100 bg-light text-dark font-sans justify-content-between">
-      <button
-        className="btn btn-link text-start text-secondary p-3"
-        onClick={previousQuestion}
-      >
-        &lt; Previous
-      </button>
-
-      <div className="flex-grow-1 px-3">
-        <div className="bg-primary text-white p-4 rounded shadow text-center fs-5 fw-medium mb-4">
-          {currentQuestion}
-        </div>
-
-        <div className="mb-4">
-          {currentOptions.map((option, index) => (
-            <div className="form-check mb-2" key={index}>
-              <input
-                className="form-check-input"
-                type="radio"
-                name="drink"
-                value={option}
-                checked={selectedOption === option}
-                onChange={() => setSelectedOption(option)}
-                id={`option-${index}`}
-              />
-              <label className="form-check-label" htmlFor={`option-${index}`}>
-                {option}
-              </label>
-            </div>
-          ))}
-        </div>
-
-        <button
-          className="btn btn-success w-100 fw-semibold shadow-sm"
-          disabled={!selectedOption}
-          onClick={nextQuestion}
-        >
-          Next
-        </button>
-      </div>
+<div className="quiz">
+  <Previous onClick={() => previousQuestion()} />
+  <div className="center px-3">
+    <div className="bg-primary text-white p-4 shadow text-center fw-medium mb-4 question">
+      {currentQuestion}
     </div>
+
+    <div className="mb-4">
+      {currentOptions.map((option, index) => (
+        <Form.Check 
+          type="radio"
+          key={index}
+          name="answer"
+          id={`option-${index}`}
+          label={option.answer}
+          value={option.answer}
+          checked={selectedOption === option.answer}
+          onChange={() => setSelectedOption(option.answer)}
+          className="mb-2 answer"
+        />
+      ))}
+    </div>
+
+    <Button 
+      variant="success" 
+      className="w-50 fw-semibold shadow-sm next" 
+      disabled={!selectedOption} 
+      onClick={nextQuestion}
+    >
+      Next
+    </Button>
+  </div>
+</div>
   );
 };
 

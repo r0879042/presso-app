@@ -1,37 +1,44 @@
-import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./../styles/HomePage.scss";
-import Navbar from '../components/Navbar';
-
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import quiz from '../assets/images/coffee-quiz.png'
+import code from '../assets/images/coffee-code.png'
+import search from '../assets/images/coffee-search.png'
 const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="home-page container py-4">
-        <div className="options-wrapper container">
-            <div className="row">
-                <div className="col-12 mb-4 d-flex justify-content-start">
-                    <div className="circle-option" onClick={() => navigate('/quizstart')}>
-                        <img src="" alt="Coffee Quiz" />
-                        <div className="label">Coffee Quiz</div>
-                    </div>
-                </div>
-                <div className="col-12 mb-4 d-flex justify-content-end">
-                    <div className="circle-option" onClick={() => navigate('/')}>
-                        <img src="" alt="Enter Code" />
-                        <div className="label">Enter Code to<br />continue session</div>
-                    </div>
-                </div>
-                <div className="col-12 mb-4 d-flex justify-content-start">
-                    <div className="circle-option" onClick={() => navigate('/find')}>
-                        <img src="" alt="Find" />
-                        <div className="label">Find</div>
-                    </div>
-                </div>
-            </div>
-        </div>   
-        <Navbar />  
-    </div>
+        <Container className="coffee-options my-4 center">
+            <Row className="menu g-4">
+                <Col className="menuItem" md={4}>
+                    <Card className="option-card shadow-sm" onClick={() => navigate('/quizstart')}>
+                        <Card.Body>
+                            <Card.Title className="option-title">Coffee quiz</Card.Title>
+                            <Card.Text className="option-text">This 5 question quiz will craft your ideal cup of coffee to try</Card.Text>
+                                <img src={quiz} alt="Coffee quiz" className="option-image" />
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className="menuItem" md={4}>
+                    <Card className="option-card shadow-sm" onClick={() => navigate('/')}>
+                        <Card.Body>
+                            <Card.Title className="option-title">Code</Card.Title>
+                            <Card.Text className="option-text">Enter the code on your receipt to buy the coffee you tasted</Card.Text>
+                                <img src={code} alt="Code" className="option-image" />
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col className="menuItem" md={4}>
+                    <Card className="option-card shadow-sm" onClick={() => navigate('/find')}>
+                        <Card.Body>
+                            <Card.Title className="option-title">Search</Card.Title>
+                            <Card.Text className="option-text">Browse our coffee collection and choose your favorite</Card.Text>
+                                <img src={search} alt="Search" className="option-image" />
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>  
   );
 };
 

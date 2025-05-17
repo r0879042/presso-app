@@ -21,5 +21,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.center {
+  @include mixins.center();
+}
+
 
 
