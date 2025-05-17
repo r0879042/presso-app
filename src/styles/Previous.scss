@@ -1,3 +1,5 @@
+@use "./variables";
+
 .previous-wrapper {
     background-color: #f8f5ef; // light beige from the mockup
     padding: 1rem;
@@ -7,7 +9,7 @@
       background: transparent;
       font-weight: bold;
       color: #000;
-      font-size: 1rem;
+      font-size: variables.$big-text-size;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -21,4 +23,20 @@
       }
     }
   }
+
+   @media (max-width: 768px) {
+    .previous-wrapper {
+      button {
+        font-size: variables.$medium-text-size;
+      }
+    }
+  }
+
+    @media (max-width: 576px) {
+      .previous-wrapper {
+        button {
+          font-size: variables.$small-text-size;
+        }
+      }
+    }
   

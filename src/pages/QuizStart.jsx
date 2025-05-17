@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./../styles/Quiz.scss";
+import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
 
 const CoffeeQuizStart = () => {
@@ -9,7 +10,7 @@ const CoffeeQuizStart = () => {
   return (
     <div className="coffee-quiz container text-center py-5">
       <div className="text-section mb-4">
-        <a href="#" className="text-muted small d-block text-start mb-2" onClick={() => navigate(-1)}>← Previous</a>
+        <Previous onClick={() => navigate(-1)} />
         <h2 className="quiz-title">Coffee Profiler Quiz</h2>
         <p className="quiz-description">
           Designed to uncover your ideal Nespresso experience, <br />
