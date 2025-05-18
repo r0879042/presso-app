@@ -40,3 +40,11 @@ $breakpoints: (
   align-items: $align;
   flex-wrap: $wrap;
 }
+
+@mixin center($direction: column, $height: 95vh){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+    min-height: $height;
+}

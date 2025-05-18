@@ -1,3 +1,5 @@
+@use "./variables";
+
 .coffee-quiz {
     .quiz-title {
       font-weight: 600;
@@ -24,6 +26,44 @@
         max-width: 100%;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .quiz{
+    .question {
+      font-size: variables.$medium-title-size;
+      border-radius: variables.$border-radius;
+    }
+
+    .next {
+      font-size: variables.$medium-title-size;
+    }
+
+    .answer {
+      font-size: variables.$big-text-size;
+      margin: 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .quiz{
+      .question, .next {
+        font-size: variables.$small-title-size;
+      }
+
+      .answer {
+        font-size: variables.$medium-text-size;
+        margin: 30px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .quiz{
+      .answer {
+        font-size: variables.$small-text-size;
+        margin: 10px;
       }
     }
   }
