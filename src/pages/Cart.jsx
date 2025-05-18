@@ -11,7 +11,14 @@ const Cart = () => {
 
   const [quantity, setQuantity] = useState(0);
 
-  if (!capsule) return <div>No items in bag.</div>;
+  if (!capsule) return (
+    <div>
+      <Previous onClick={() => navigate(-1)} />
+      <div>No items in bag.</div>
+    </div>
+    
+  )
+
 
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => {

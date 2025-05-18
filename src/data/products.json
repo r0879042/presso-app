@@ -1,38 +1,33 @@
 [
-    {
-      "name": "Vienna lungo",
-      "type": "Original",
-      "image": "Vienna lungo.jpg"
-    },
-    {
-      "name": "Stockholm lungo",
-      "type": "Original",
-      "image": "Stockholm lungo.jpg"
-    },
-    {
-      "name": "Cape Town lungo",
-      "type": "Original",
-      "image": "Cape Town lungo.jpg"
-    },
-    {
-      "name": "Shanghai lungo",
-      "type": "Original",
-      "image": "Shanghai lungo.jpg"
-    },
-    {
-      "name": "Tokyo lungo",
-      "type": "Original",
-      "image": "Tokyo lungo.jpg"
-    },
-    {
-      "name": "Paris Espresso",
-      "type": "Original",
-      "image": "Paris Espresso.jpg"
-    },
-    {
-      "name": "Vienna lungo",
-      "type": "Original",
-      "image": "Vienna lungo.jpg"
-    }
-  ]
+  {
+    "name": "Vienna Lungo",
+    "type": "Original",
+    "image": "vienna-lungo.jpg"
+  },
+  {
+    "name": "Stockholm Lungo",
+    "type": "Original",
+    "image": "stockholm-lungo.jpg"
+  },
+  {
+    "name": "Cape Town Lungo",
+    "type": "Original",
+    "image": "capetown-lungo.jpg"
+  },
+  {
+    "name": "Shanghai Lungo",
+    "type": "Original",
+    "image": "shanghai-lungo.jpg"
+  },
+  {
+    "name": "Tokyo Lungo",
+    "type": "Original",
+    "image": "tokyo-lungo.jpg"
+  },
+  {
+    "name": "Paris Espresso",
+    "type": "Original",
+    "image": "paris-espresso.jpg"
+  }
   
+]

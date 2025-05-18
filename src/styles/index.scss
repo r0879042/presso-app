@@ -4,11 +4,19 @@
 //Import variables & mixins
 @use "./mixins";
 @use "./variables";
+@use "./responsive";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+}
+
+html, body , #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
