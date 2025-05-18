@@ -19,9 +19,6 @@ function Find() {
 
   return (
     <div className="find-product-page">
-      <div className="header">
-        <h5>Find page</h5>
-      </div>
 
       <div className="top-toggle">
         <button
@@ -38,7 +35,6 @@ function Find() {
         </button>
       </div>
 
-      {/* Our new SearchBar component */}
       <SearchBar data={products} onSelect={(item) => setSelected(item)} />
 
       <h4 className="section-title">World Explorations</h4>
@@ -48,7 +44,7 @@ function Find() {
           
           <Link
             to="/flavour"
-            state={{ capsule, from: '/find' }}  // Passing the capsule data and source page
+            state={{ capsule, from: '/find' }}
             key={idx}
             className="capsule-card"
           >
@@ -58,8 +54,8 @@ function Find() {
 
         ))}
       </div>
-      <Navbar />
       
+      <Navbar /> 
     </div>
   );
 }

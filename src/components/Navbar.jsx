@@ -23,7 +23,7 @@ const Navbar = () => {
         <img src={quizIcon} alt="Quiz" className='nav-icon' />
         <span>Quiz</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/Bag')}>
+      <div className="nav-item" onClick={() => navigate('/cart')}>
         <img src={cartIcon} alt="Cart" className='nav-icon' />
         <span>Cart</span>
       </div>
