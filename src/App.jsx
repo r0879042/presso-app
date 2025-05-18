@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import FindProduct from './pages/Find';
+import Find from './pages/Find';
 import Vertuo from './pages/Vertuo';
 import Flavour from './pages/Flavour';
 import Cart from './pages/Cart';
