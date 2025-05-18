@@ -10,6 +10,7 @@ import SessionCode from './pages/SessionCode';
 import QuizStart from './pages/QuizStart';
 import Quiz from './pages/Quiz';
 import HomePage from './pages/HomePage';
+import Recommendations from './pages/Recommendations';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/sessioncode" element={<SessionCode />} />
       <Route path="/quizstart" element={<QuizStart />} />
       <Route path="/quiz" element={<Quiz />} />
+      <Route path="/recommendations/:sessionCode" element={<Recommendations />} />
     </Routes>
   );
 }
