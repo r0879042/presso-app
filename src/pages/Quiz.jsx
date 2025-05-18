@@ -2,25 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import { Button, Container, Form } from 'react-bootstrap';
-
+import '../styles/Quiz.scss';
 
 const Quiz = () => {
   const navigate = useNavigate();
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentOptions, setCurrentOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState(1);
+  const [currentSession, setCurrentSession] = useState('');
 
   useEffect(() => {
     setQuestion(1);
   }, []);
- 
-  const question2 = "Do you prefer a specific cup size?";
-  const options2 = [
-    'Small',
-    'Medium, perfect',
-    'Large and filling'
-  ];
+
+  const getSessionAndSetAnswer = () => {
+    fetch('http://127.0.0.1:8000/api/session')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setCurrentSession(data);
+        setAnswer(data, currentQuestionId, selectedOption);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
   const setQuestion = (id) => {
     fetch('http://127.0.0.1:8000/api/question/' + id)
@@ -31,9 +42,36 @@ const Quiz = () => {
         return response.json();
       })
       .then(data => {
-        setCurrentQuestionId(id);
-        setCurrentQuestion(data[0].question);
-        setCurrentOptions(data[0].answers);
+        if(data.question != undefined){
+          setCurrentQuestionId(id);
+          setCurrentQuestion(data.question);
+          setCurrentOptions(data.answers);
+        }
+        else{
+          navigate('/recommendations', {sessionCode: currentSession});
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  const setAnswer = (sessionCode, questionId, answerId) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionCode, questionId, answerId })
+    };
+
+    fetch('http://127.0.0.1:8000/api/sessionanswer', requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Answer saved: ' + JSON.stringify(data));
       })
       .catch(error => {
         console.error('Error:', error);
@@ -50,7 +88,13 @@ const Quiz = () => {
   };
 
   const nextQuestion = () => {
-     setQuestion(currentQuestionId + 1);
+    if(currentSession == ''){
+      getSessionAndSetAnswer();
+    }
+    else{
+      setAnswer(currentSession, currentQuestionId, selectedOption);
+    }
+    setQuestion(currentQuestionId + 1);
   };
 
   return  (
@@ -70,8 +114,8 @@ const Quiz = () => {
           id={`option-${index}`}
           label={option.answer}
           value={option.answer}
-          checked={selectedOption === option.answer}
-          onChange={() => setSelectedOption(option.answer)}
+          checked={selectedOption === option.id}
+          onChange={() => setSelectedOption(option.id)}
           className="mb-2 answer"
         />
       ))}

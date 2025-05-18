@@ -1,0 +1,74 @@
+.recommendation-page {
+  background-color: #f4f0e8;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 350px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .flavor-card {
+    background-color: #ffffff;
+    border: none;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .flavor-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .flavor-name {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .action-button {
+    background-color: #28a745;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 1em;
+  }
+
+  .action-button:hover {
+    background-color: #218838;
+  }
+
+  @media (min-width: 768px) {
+    .button-group {
+      flex-direction: row;
+      width: auto;
+    }
+
+    .action-button {
+      padding: 10px 30px;
+    }
+  }
+}
