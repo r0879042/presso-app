@@ -14,7 +14,6 @@ const Recommendations = () => {
  }, []);
 
  const getRecommendations = () => {
-    console.log(sessionCode);
     fetch('http://127.0.0.1:8000/api/answercapsules/' + sessionCode)
       .then(response => {
         if (!response.ok) {
@@ -30,6 +29,15 @@ const Recommendations = () => {
       });
   };
 
+  const printReceipt = () => {
+    navigate('/receipt', {
+      state: {
+        sessionCode: sessionCode,
+        capsules: capsules,
+      },
+    });
+  };
+
   return (
     <Container className="recommendation-page">
       <Previous onClick={() => navigate(-1)} />
@@ -38,16 +46,16 @@ const Recommendations = () => {
         <Card key={index} className="flavor-card">
           <Row className="align-items-center">
             <Col xs={2} className="image-col">
-              <img src={"/src/assets/images/" + capsule.image} alt={capsule.name} className="flavor-image" />
+              <img src={"/src/assets/images/capsules/" + capsule.image} alt={capsule.name} className="flavor-image" />
             </Col>
             <Col xs={10} className="name-col">
-              <span className="flavor-name">{capsule.name}</span>
+              <span className="flavor-name">{capsule.name} - {capsule.type}</span>
             </Col>
           </Row>
         </Card>
       ))}
       <div className="button-group">
-        <Button variant="success" className="action-button">Print receipt</Button>
+        <Button variant="success" className="action-button" onClick={printReceipt}>Print receipt</Button>
         <Button variant="success" className="action-button">Next</Button>
       </div>
     </Container>
