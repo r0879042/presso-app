@@ -7,10 +7,10 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import Checkout from './pages/Checkout';
 import TastingPage from './pages/TastingPage';
 import SessionCode from './pages/SessionCode';
-import QuizStart from './pages/QuizStart';
 import Quiz from './pages/Quiz';
 import HomePage from './pages/HomePage';
 import Recommendations from './pages/Recommendations';
+import Receipt from './pages/Receipt';
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode />} />
-      <Route path="/quizstart" element={<QuizStart />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/recommendations/:sessionCode" element={<Recommendations />} />
+      <Route path="/receipt" element={<Receipt />} />
     </Routes>
   );
 }

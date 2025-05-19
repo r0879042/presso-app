@@ -1,34 +1,5 @@
 @use "./variables";
-
-.coffee-quiz {
-    .quiz-title {
-      font-weight: 600;
-      font-size: 1.8rem;
-      color: #2d2d2d;
-    }
-  
-    .quiz-description {
-      color: #555;
-      font-size: 1rem;
-    }
-  
-    .btn-success {
-      background-color: #3ca861;
-      border: none;
-  
-      &:hover {
-        background-color: #2e854f;
-      }
-    }
-  
-    .image-section {
-      img {
-        max-width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
+@use 'sass:math';
 
   .quiz{
     .question {
@@ -42,7 +13,7 @@
 
     .answer {
       font-size: variables.$big-text-size;
-      margin: 50px;
+      margin: variables.$margin * 2;
     }
   }
 
@@ -54,7 +25,7 @@
 
       .answer {
         font-size: variables.$medium-text-size;
-        margin: 30px;
+        margin: variables.$margin;
       }
     }
   }
@@ -63,7 +34,7 @@
     .quiz{
       .answer {
         font-size: variables.$small-text-size;
-        margin: 10px;
+        margin: math.div(variables.$margin, 2);
       }
     }
   }
