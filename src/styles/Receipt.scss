@@ -1,0 +1,65 @@
+@use "./variables";
+@use "./mixins";
+@use 'sass:math';
+
+.receipt-container {
+  @include mixins.center(column, 100%);
+  background-color: #f9f9f9;
+
+  .print {
+    font-size: variables.$small-title-size !important;
+    margin-bottom: variables.$margin;
+
+    @include mixins.respond-to('tablet') {
+      font-size: variables.$medium-title-size !important;
+    }
+  }
+
+  .receipt-card {
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+
+    .receipt-title {
+      @include mixins.centerText();
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$big-title-size;
+      }
+    }
+
+    .receipt-items {
+      @include mixins.centerText(variables.$small-title-size, variables.$margin);
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$medium-text-size;
+      }
+    }
+
+    .tasting-code-title {
+      @include mixins.centerText(variables.$small-title-size, math.div(variables.$margin, 2));
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$medium-title-size;
+      }
+    }
+
+    .tasting-code {
+      @include mixins.centerText();
+      font-weight: bold;
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$big-title-size;
+      }
+    }
+
+    .receipt-note {
+      @include mixins.centerText(variables.$small-title-size, math.div(variables.$margin, 2));
+      color: #555;
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$medium-text-size;
+      }
+    }
+  }
+}

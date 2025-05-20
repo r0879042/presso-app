@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SessionCode.scss';
 import Previous from '../components/Previous';
+import Navbar from '../components/Navbar';
 
 const SessionCode = () => {
   const [code, setCode] = useState('');
@@ -14,22 +15,23 @@ const SessionCode = () => {
   };
 
   return (
-    <div className="session-page">
-      <Previous />
+    <div>
+      <Previous onClick={() => navigate(-1)} />
+      <div className="session-page">
+        <h2 className="code-title">Enter session code to continue</h2>
+        <input
+          type="text"
+          maxLength="4"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className="code-input"
+        />
 
-      <h2>Enter session code to continue</h2>
-
-      <input
-        type="text"
-        maxLength="4"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        className="code-input"
-      />
-
-      <button className="next-btn" onClick={handleSubmit} disabled={code.length !== 4}>
-        →
-      </button>
+        <button className="next-btn" onClick={handleSubmit} disabled={code.length !== 4}>
+          →
+        </button>
+      </div>
+      <Navbar />
     </div>
   );
 };

@@ -1,104 +1,87 @@
 @use "./variables";
+@use "./mixins";
+@use 'sass:math';
 
 .coffee-options {
-    .option-card {
-        background-color: variables.$secondary-color;
-        border-radius: variables.$border-radius;
-        padding: 30px 20px;
-        position: relative;
-        overflow: visible;
-        transition: transform 0.2s, box-shadow 0.2s;
-        cursor: pointer;
-        height: 300px;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .option-content {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-        }
-
-        .option-text {
-            width: 70%;
-            font-size: variables.$big-text-size;
-            color: #555;
-        }
-
-        .option-title {
-            font-size: variables.$big-title-size;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 10px;
-        }
-
-        .option-image {
-            width: 300px;
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 0;
-        }
-    }
-
     .menu {
-      justify-content: center;
-      gap: 40px;
-    }
-
-    .menuItem{
-      width: 90%;
-    }
-
-    @media (max-width: 768px) {
-        .option-card {
-            height: 270px;
-            padding: 20px;
-            .option-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .option-text {
-                font-size: variables.$medium-text-size;
-            }
-
-            .option-title {
-                font-size: variables.$big-title-size;
-            }
-
-            .option-image {
-              width: 200px;
-            }
-        }
-    }
-
-    @media (max-width: 576px) {
-        .option-card {
-            height: 160px;
-            padding: 15px;
-            
-            .option-title {
-                font-size: variables.$small-title-size;
-            }
-
-            .option-text {
-                font-size: variables.$small-text-size;
-            }
-
-            .option-image {
-              width: 120px;
-            }
-        }
-
-      .menu {
         justify-content: initial;
         gap: 20px;
-      }
+
+        @include mixins.respond-to('phone') {
+            justify-content: center;
+            gap: 40px;
+        }
+            
+        .menuItem{
+            width: 90%;
+
+            .option-card {
+                background-color: variables.$secondary-color;
+                border-radius: variables.$border-radius;
+                position: relative;
+                overflow: visible;
+                transition: transform 0.2s, box-shadow 0.2s;
+                cursor: pointer;
+                height: 160px;
+                padding: 15px;
+
+                @include mixins.respond-to('phone') {
+                    height: 270px;
+                    padding: 20px;
+                }
+
+                @include mixins.respond-to('tablet') {
+                    padding: 30px 20px;
+                    height: 300px;
+                }
+
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                }
+
+                .option-text {
+                    width: 70%;
+                    font-size: variables.$small-text-size;
+                    color: #555;
+
+                    @include mixins.respond-to('phone') {
+                        font-size: variables.$medium-text-size;
+                    }
+
+                    @include mixins.respond-to('tablet') {
+                        font-size: variables.$big-text-size;
+                    }
+                }
+
+                .option-title {
+                    font-size: variables.$small-title-size;
+                    font-weight: 700;
+                    color: #000;
+                    margin-bottom: math.div(variables.$margin, 2);
+
+                    @include mixins.respond-to('phone') {
+                        font-size: variables.$big-title-size;
+                    }
+                }
+
+                .option-image {
+                    width: 120px;
+                    position: absolute;
+                    right: -40px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    z-index: 0;
+
+                    @include mixins.respond-to('phone') {
+                        width: 200px;
+                    }
+
+                    @include mixins.respond-to('tablet') {
+                        width: 300px;
+                    }
+                }
+            }
+        }
     }
 }

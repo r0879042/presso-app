@@ -1,69 +1,48 @@
 @use "./variables";
-
-.coffee-quiz {
-    .quiz-title {
-      font-weight: 600;
-      font-size: 1.8rem;
-      color: #2d2d2d;
-    }
-  
-    .quiz-description {
-      color: #555;
-      font-size: 1rem;
-    }
-  
-    .btn-success {
-      background-color: #3ca861;
-      border: none;
-  
-      &:hover {
-        background-color: #2e854f;
-      }
-    }
-  
-    .image-section {
-      img {
-        max-width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
+@use "./mixins";
+@use 'sass:math';
 
   .quiz{
-    .question {
-      font-size: variables.$medium-title-size;
-      border-radius: variables.$border-radius;
-    }
+    .center {
+      margin: variables.$margin;
 
-    .next {
-      font-size: variables.$medium-title-size;
-    }
-
-    .answer {
-      font-size: variables.$big-text-size;
-      margin: 50px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .quiz{
-      .question, .next {
+      .question {
         font-size: variables.$small-title-size;
+        border-radius: variables.$border-radius;
+        color: #ffffff;
+        background-color: #0D0E65;
+        padding: 5px;
+        text-align: center;
+
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$medium-title-size;
+        }
+      }
+      .form {
+        margin: variables.$margin;
+
+        .answer {
+          font-size: variables.$small-text-size;
+          margin: math.div(variables.$margin, 2);
+
+          @include mixins.respond-to('phone') {
+            font-size: variables.$medium-text-size;
+            margin: variables.$margin;
+          }
+
+          @include mixins.respond-to('tablet') {
+            font-size: variables.$big-text-size;
+            margin: variables.$margin * 2;
+          }
+        }
       }
 
-      .answer {
-        font-size: variables.$medium-text-size;
-        margin: 30px;
-      }
-    }
-  }
+      .next {
+        width: 45%;
 
-  @media (max-width: 576px) {
-    .quiz{
-      .answer {
-        font-size: variables.$small-text-size;
-        margin: 10px;
+        @include mixins.respond-to('tablet') {
+           width: 30%;
+        }
       }
     }
   }
