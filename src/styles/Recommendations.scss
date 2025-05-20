@@ -5,13 +5,20 @@
   padding: 20px;
   border-radius: 8px;
   margin: auto;
-  @include mixins.center();
 
   .title {
-    font-size: variables.$big-title-size;
+    font-size: variables.$small-title-size;
     font-weight: bold;
     margin-bottom: variables.$margin;
     text-align: center;
+    
+    @include mixins.respond-to('phone') {
+      font-size: variables.$medium-title-size;
+    }
+
+    @include mixins.respond-to('tablet') {
+       font-size: variables.$big-title-size;
+    }
   }
 
   .flavor-card {
@@ -22,21 +29,40 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     width: 90%;
-  }
 
-  .flavor-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
+    .name-col{
+      text-align: center;
 
-  .name-col{
-    text-align: center;
-  }
+      .flavor-name {
+        font-size: variables.$small-text-size;
+        font-weight: 500;
 
-  .flavor-name {
-    font-size: variables.$big-text-size;
-    font-weight: 500;
+        @include mixins.respond-to('phone') {
+          font-size: variables.$medium-text-size;
+        }
+
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$big-text-size;
+        }
+      }
+    }
+
+    .flavor-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+
+      
+      @include mixins.respond-to('phone') {
+        width: 100px;
+        height: 100px;
+      }
+
+      @include mixins.respond-to('tablet') {
+        width: 150px;
+        height: 150px;
+      }
+    }
   }
 
   .button-group {
@@ -46,49 +72,5 @@
     margin-top: variables.$margin;
     justify-content: center;
     width: 100%;
-  }
-
-  .action-button {
-    background-color: #3ca861;
-    padding: 10px 30px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    color: #ffffff;
-    font-size: variables.$big-text-size;
-  }
-
-  .action-button:hover {
-    background-color: #2e854f;
-  }
-
-  @media (max-width: 768px) {
-    .title{
-      font-size: variables.$medium-title-size;
-    }
-
-    .flavor-name, .action-button {
-      font-size: variables.$medium-text-size;
-    }
-
-    .flavor-image {
-      width: 100px;
-      height: 100px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .title{
-      font-size: variables.$small-title-size;
-    }
-
-    .flavor-name, .action-button {
-      font-size: variables.$small-text-size;
-    }
-
-    .flavor-image {
-      width: 50px;
-      height: 50px;
-    }
   }
 }

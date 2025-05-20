@@ -15,22 +15,22 @@ const SessionCode = () => {
   };
 
   return (
-    <div className="session-page">
+    <div>
       <Previous onClick={() => navigate(-1)} />
+      <div className="session-page">
+        <h2 className="code-title">Enter session code to continue</h2>
+        <input
+          type="text"
+          maxLength="4"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          className="code-input"
+        />
 
-      <h2>Enter session code to continue</h2>
-
-      <input
-        type="text"
-        maxLength="4"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        className="code-input"
-      />
-
-      <button className="next-btn" onClick={handleSubmit} disabled={code.length !== 4}>
-        →
-      </button>
+        <button className="next-btn" onClick={handleSubmit} disabled={code.length !== 4}>
+          →
+        </button>
+      </div>
       <Navbar />
     </div>
   );

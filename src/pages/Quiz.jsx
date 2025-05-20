@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Form, Card} from 'react-bootstrap';
 import '../styles/Quiz.scss';
 
 const Quiz = () => {
@@ -48,7 +48,7 @@ const Quiz = () => {
           setCurrentOptions(data.answers);
         }
         else{
-          navigate('/recommendations', {sessionCode: currentSession});
+          navigate('/recommendations/' + currentSession);
         }
       })
       .catch(error => {
@@ -98,39 +98,43 @@ const Quiz = () => {
   };
 
   return  (
-<div className="quiz">
-  <Previous onClick={() => previousQuestion()} />
-  <div className="center px-3">
-    <div className="bg-primary text-white p-4 shadow text-center fw-medium mb-4 question">
-      {currentQuestion}
-    </div>
+    <div className="quiz">
+      <Previous onClick={() => previousQuestion()} />
+      <div className="center">
+        <Card className="question">
+          <Card.Body>
+            <Card.Text>
+              {currentQuestion}
+            </Card.Text>
+          </Card.Body>
+        </Card>
 
-    <div className="mb-4">
-      {currentOptions.map((option, index) => (
-        <Form.Check 
-          type="radio"
-          key={index}
-          name="answer"
-          id={`option-${index}`}
-          label={option.answer}
-          value={option.answer}
-          checked={selectedOption === option.id}
-          onChange={() => setSelectedOption(option.id)}
-          className="mb-2 answer"
-        />
-      ))}
-    </div>
+        <Form className="form">
+          {currentOptions.map((option, index) => (
+            <Form.Check 
+              type="radio"
+              key={index}
+              name="answer"
+              id={`option-${index}`}
+              label={option.answer}
+              value={option.answer}
+              checked={selectedOption === option.id}
+              onChange={() => setSelectedOption(option.id)}
+              className="answer"
+            />
+          ))}
+        </Form>
 
-    <Button 
-      variant="success" 
-      className="w-50 fw-semibold shadow-sm next" 
-      disabled={!selectedOption} 
-      onClick={nextQuestion}
-    >
-      Next
-    </Button>
-  </div>
-</div>
+        <Button 
+          variant="success" 
+          className="next action-button" 
+          disabled={!selectedOption} 
+          onClick={nextQuestion}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ const HomePage = () => {
                         <Card.Body>
                             <Card.Title className="option-title">Coffee quiz</Card.Title>
                             <Card.Text className="option-text">This 5 question quiz will craft your ideal cup of coffee to try</Card.Text>
-                                <img src={quiz} alt="Coffee quiz" className="option-image" />
+                            <img src={quiz} alt="Coffee quiz" className="option-image" />
                         </Card.Body>
                     </Card>
                 </Col>
@@ -24,7 +24,7 @@ const HomePage = () => {
                         <Card.Body>
                             <Card.Title className="option-title">Code</Card.Title>
                             <Card.Text className="option-text">Enter the code on your receipt to buy the coffee you tasted</Card.Text>
-                                <img src={code} alt="Code" className="option-image" />
+                            <img src={code} alt="Code" className="option-image" />
                         </Card.Body>
                     </Card>
                 </Col>
@@ -33,7 +33,7 @@ const HomePage = () => {
                         <Card.Body>
                             <Card.Title className="option-title">Find</Card.Title>
                             <Card.Text className="option-text">Browse our coffee collection and choose your favorite</Card.Text>
-                                <img src={search} alt="Search" className="option-image" />
+                            <img src={search} alt="Search" className="option-image" />
                         </Card.Body>
                     </Card>
                 </Col>
