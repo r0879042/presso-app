@@ -1,16 +1,26 @@
-import React, { useState } from "react";
-import capsules from "../data/vertuo.json";
+import React, { useEffect ,useState } from "react";
 import "../styles/Vertuo.scss";
 import {Link, useNavigate } from "react-router-dom";
 import SearchBar from '../components/SearchBar';
-import products from '../data/vertuo.json';
-
+import "../styles/responsive.scss";
 
 
 function Vertuo() {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [type, setType] = useState("Vertuo");
+  const [capsules, setCapsules] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+const [type, setType] = useState("Vertuo");
+
+useEffect(() => {
+  fetch("http://127.0.0.1:8000/api/vertuo") // use your real API route
+    .then((res) => res.json())
+    .then((data) => {
+      // Filter Vertuo capsules only
+      const vertuoCapsules = data.filter(capsule => capsule.type === "Vertuo");
+      setCapsules(vertuoCapsules);
+    })
+    .catch((err) => console.error("Failed to fetch capsules", err));
+}, []);
 
   const filteredCapsules = capsules.filter(
     (capsule) =>
@@ -20,14 +30,12 @@ function Vertuo() {
 
   return (
     <div className="vertuo">
-      <div className="header">
-        <h5>Find page</h5>
-      </div>
+      
 
       <div className="top-toggle">
         <button
           className={type === "Original" ? "active" : ""}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/find")}
         >
           <span className="icon">☕</span> Original
         </button>
@@ -41,7 +49,7 @@ function Vertuo() {
       </div>
 
       {/* Our new SearchBar component */}
-      <SearchBar data={products} onSelect={(item) => setSelected(item)} />
+      <SearchBar data={capsules} onSelect={(item) => setSelected(item)} />
 
       <h4 className="section-title">Mug(230 ml)</h4>
 
