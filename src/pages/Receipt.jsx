@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/Receipt.scss';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Receipt = () => {
@@ -8,8 +8,13 @@ const Receipt = () => {
   const location = useLocation();
   const { sessionCode, capsules } = location.state || { sessionCode: '', capsules: [] };
 
+  function print() {
+      window.print()
+  }
+
   return (
-    <div className="receipt-container" onClick={() => navigate('/sessioncode')}>
+    <div className="receipt-container" onClick={() => navigate('/')}>
+      <Button className="print" onClick={print}>Print</Button>
       <Card className="receipt-card">
         <Card.Body>
           <div className="receipt-title">Receipt</div>

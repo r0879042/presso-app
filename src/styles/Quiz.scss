@@ -1,40 +1,48 @@
 @use "./variables";
+@use "./mixins";
 @use 'sass:math';
 
   .quiz{
-    .question {
-      font-size: variables.$medium-title-size;
-      border-radius: variables.$border-radius;
-    }
+    .center {
+      margin: variables.$margin;
 
-    .next {
-      font-size: variables.$medium-title-size;
-    }
-
-    .answer {
-      font-size: variables.$big-text-size;
-      margin: variables.$margin * 2;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .quiz{
-      .question, .next {
+      .question {
         font-size: variables.$small-title-size;
-      }
+        border-radius: variables.$border-radius;
+        color: #ffffff;
+        background-color: #0D0E65;
+        padding: 5px;
+        text-align: center;
 
-      .answer {
-        font-size: variables.$medium-text-size;
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$medium-title-size;
+        }
+      }
+      .form {
         margin: variables.$margin;
-      }
-    }
-  }
 
-  @media (max-width: 576px) {
-    .quiz{
-      .answer {
-        font-size: variables.$small-text-size;
-        margin: math.div(variables.$margin, 2);
+        .answer {
+          font-size: variables.$small-text-size;
+          margin: math.div(variables.$margin, 2);
+
+          @include mixins.respond-to('phone') {
+            font-size: variables.$medium-text-size;
+            margin: variables.$margin;
+          }
+
+          @include mixins.respond-to('tablet') {
+            font-size: variables.$big-text-size;
+            margin: variables.$margin * 2;
+          }
+        }
+      }
+
+      .next {
+        width: 45%;
+
+        @include mixins.respond-to('tablet') {
+           width: 30%;
+        }
       }
     }
   }

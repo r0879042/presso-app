@@ -41,22 +41,24 @@ const Recommendations = () => {
   return (
     <Container className="recommendation-page">
       <Previous onClick={() => navigate(-1)} />
-      <div className="title">Recommended flavours to taste</div>
-      {capsules.map((capsule, index) => (
-        <Card key={index} className="flavor-card">
-          <Row className="align-items-center">
-            <Col xs={2} className="image-col">
-              <img src={"/src/assets/images/capsules/" + capsule.image} alt={capsule.name} className="flavor-image" />
-            </Col>
-            <Col xs={10} className="name-col">
-              <span className="flavor-name">{capsule.name} - {capsule.type}</span>
-            </Col>
-          </Row>
-        </Card>
-      ))}
-      <div className="button-group">
-        <Button variant="success" className="action-button" onClick={printReceipt}>Print receipt</Button>
-        <Button variant="success" className="action-button">Next</Button>
+      <div className="center">
+        <div className="title">Recommended flavours to taste</div>
+        {capsules.map((capsule, index) => (
+          <Card key={index} className="flavor-card">
+            <Row className="align-items-center">
+              <Col xs={2} className="image-col">
+                <img src={"/src/assets/images/capsules/" + capsule.image} alt={capsule.name} className="flavor-image" />
+              </Col>
+              <Col xs={10} className="name-col">
+                <span className="flavor-name">{capsule.name} - {capsule.type}</span>
+              </Col>
+            </Row>
+          </Card>
+        ))}
+        <div className="button-group">
+          <Button variant="success" className="action-button" onClick={printReceipt}>Print receipt</Button>
+          <Button variant="success" className="action-button">Next</Button>
+        </div>
       </div>
     </Container>
   );

@@ -1,4 +1,6 @@
 // /src/styles/_mixins.scss
+@use "sass:map";
+@use "./variables";
 
 $breakpoints: (
   'phone': 480px,
@@ -8,7 +10,7 @@ $breakpoints: (
 );
 
 @mixin respond-to($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
+  $value: map.get($breakpoints, $breakpoint);
   @if $value {
     @media (min-width: $value) {
       @content;
@@ -47,4 +49,10 @@ $breakpoints: (
     justify-content: center;
     align-items: center;
     min-height: $height;
+}
+
+@mixin centerText($textSize: variables.$medium-text-size, $margin: variables.$margin){
+    font-size: $textSize;
+    text-align: center;
+    margin-bottom: $margin;
 }
