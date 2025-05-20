@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import '../styles/Flavour.scss';
 
-const Flavour = () => {
+const Flavour = ({addToCart}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const capsule = location.state?.capsule;
@@ -24,7 +24,10 @@ const Flavour = () => {
           <strong className="capsule-name">{capsule.name}</strong>
           <button
             className="add-to-cart-btn"
-            onClick={() => navigate('/cart', { state: { capsule } })}
+            onClick={() => {
+              addToCart(capsule);
+              navigate('/cart');
+            }}
           >
             Add to cart
           </button>

@@ -1,15 +1,27 @@
-import React, { useState } from "react";
-import capsules from "../data/products.json";
+import React, { useState,useEffect } from "react";
 import "../styles/Find.scss";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from '../components/SearchBar';
-import products from '../data/products.json';
 import Navbar from '../components/Navbar';
+import "../styles/responsive.scss";
+
+
 
 function Find() {
   const navigate = useNavigate();
+  const [capsules, setCapsules] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("Original");
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/data") // or /api/capsules depending on your route
+      .then((res) => res.json())
+      .then((data) => {
+        setCapsules(data);
+      })
+      .catch((err) => console.error("Failed to fetch capsules", err));
+  }, []);
+
 
   const filteredCapsules = capsules.filter(
     (capsule) =>
@@ -35,7 +47,7 @@ function Find() {
         </button>
       </div>
 
-      <SearchBar data={products} onSelect={(item) => setSelected(item)} />
+      <SearchBar data={capsules} onSelect={(item) => setSelected(item)} />
 
       <h4 className="section-title">World Explorations</h4>
 
@@ -54,7 +66,7 @@ function Find() {
 
         ))}
       </div>
-      
+
       <Navbar /> 
     </div>
   );

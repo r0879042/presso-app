@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import quiz from '../assets/images/coffee-quiz.png'
 import code from '../assets/images/coffee-code.png'
 import search from '../assets/images/coffee-search.png'
+
 const HomePage = () => {
   const navigate = useNavigate();
 
