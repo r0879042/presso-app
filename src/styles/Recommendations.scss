@@ -72,5 +72,13 @@
     margin-top: variables.$margin;
     justify-content: center;
     width: 100%;
+
+    @include mixins.respond-to('tablet') {
+        flex-direction: row;
+
+        .action-button {
+          flex: 50%;
+        }
+    }
   }
 }

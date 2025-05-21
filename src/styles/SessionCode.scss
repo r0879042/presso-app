@@ -31,28 +31,7 @@
     }
   }
 
-  .next-btn {
-    background-color: #52A867;
-    color: white;
-    font-size: variables.$medium-text-size;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    &:disabled {
+  .action-button:disabled {
       background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    @include mixins.respond-to ('tablet') {
-      width: 70px;
-      height: 70px;
-      font-size: variables.$big-text-size;
-    }
   }
 }

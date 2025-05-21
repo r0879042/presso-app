@@ -1,7 +1,7 @@
 @use "./variables";
 
 .previous-wrapper {
-    background-color: #f8f5ef; // light beige from the mockup
+    background-color: variables.$background-color; // light beige from the mockup
     padding: 1rem;
   
     button {
