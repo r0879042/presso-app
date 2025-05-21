@@ -3,21 +3,65 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/SessionCode.scss';
 import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
+import ToastMessage from '../components/ToastMessage';
+import { Container, Button } from 'react-bootstrap';
 
-const SessionCode = () => {
+const SessionCode = ({ setCart }) => {
+  const [showToast, setShowToast] = useState(false);
   const [code, setCode] = useState('');
   const navigate = useNavigate();
 
+    const checkSession = () => {
+      fetch('http://127.0.0.1:8000/api/session/' + code)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.code === code) {
+            getRecommendations();
+            navigate('/cart'); 
+          }
+          else{
+            setShowToast(true)
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+  };
+
+   const getRecommendations = () => {
+    fetch('http://127.0.0.1:8000/api/answercapsules/' + code)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        let cart = data.map(capsule =>
+          ({ ...capsule, quantity: 1 })
+        );
+        setCart(cart);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   const handleSubmit = () => {
     if (code.length === 4) {
-      navigate('/tastingpage'); // or the next page in your flow
+      checkSession(code);
     }
   };
 
   return (
     <div>
       <Previous onClick={() => navigate(-1)} />
-      <div className="session-page">
+      <Container className="session-page">
         <h2 className="code-title">Enter session code to continue</h2>
         <input
           type="text"
@@ -27,10 +71,15 @@ const SessionCode = () => {
           className="code-input"
         />
 
-        <button className="next-btn" onClick={handleSubmit} disabled={code.length !== 4}>
+        <Button variant="success" className="action-button" onClick={handleSubmit} disabled={code.length !== 4}>
           →
-        </button>
-      </div>
+        </Button>
+        <ToastMessage
+          show={showToast}
+          message="The code you entered doesn't exist!"
+          onClose={() => setShowToast(false)}
+        />
+      </Container>
       <Navbar />
     </div>
   );
