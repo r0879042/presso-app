@@ -5,22 +5,45 @@ import SearchBar from '../components/SearchBar';
 import "../styles/responsive.scss";
 
 
+const priceMap = {
+  // Original
+  "Paris Espresso": "price_1RRi8PDtRlajemAypU4F0YRA",
+  "Vienna Lungo": "price_1RRhS3DtRlajemAyn21pjfVU",
+  "Stockholm Lungo": "price_1RRi4EDtRlajemAySwy8ukJY",
+  "Tokyo Lungo": "price_1RRi7gDtRlajemAy4yLAYZ8F",
+  "Cape Town Lungo": "price_1RRi5LDtRlajemAykhs49GNX",
+  "Shanghai Lungo": "price_1RRiPxDtRlajemAy65AzDwO9",
+
+  // Vertuo
+  "Paris Espresso Vertuo": "price_1RRiKfDtRlajemAyR1ofOc5N",
+  "Vienna Lungo Vertuo": "price_1RRiMEDtRlajemAysbaSTnVe",
+  "Stockholm Lungo Vertuo": "price_1RRiPJDtRlajemAyLoHrnWzU",
+  "Tokyo Lungo Vertuo": "price_1RRiNKDtRlajemAyY8SycFWD",
+  "Cape Town Lungo Vertuo": "price_1RRiO5DtRlajemAymuLnkIFj",
+  "Shanghai Lungo Vertuo": "price_1RRiQfDtRlajemAyxrjwOYOW"
+};
+
 function Vertuo() {
   const navigate = useNavigate();
   const [capsules, setCapsules] = useState([]);
-const [searchTerm, setSearchTerm] = useState("");
-const [type, setType] = useState("Vertuo");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [type, setType] = useState("Vertuo");
 
-useEffect(() => {
-  fetch("http://127.0.0.1:8000/api/vertuo") // use your real API route
-    .then((res) => res.json())
-    .then((data) => {
-      // Filter Vertuo capsules only
-      const vertuoCapsules = data.filter(capsule => capsule.type === "Vertuo");
-      setCapsules(vertuoCapsules);
-    })
-    .catch((err) => console.error("Failed to fetch capsules", err));
-}, []);
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/data")
+      .then(res => res.json())
+      .then(data => {
+        // Add price_id to each capsule
+        const enriched = data.map(capsule => ({
+          ...capsule,
+          price_id: priceMap[
+            capsule.type === "Vertuo" ? capsule.name + " Vertuo" : capsule.name
+          ] || null
+        }));
+        setCapsules(enriched);
+      })
+      .catch(err => console.error("Failed to fetch capsules", err));
+  }, []);
 
   const filteredCapsules = capsules.filter(
     (capsule) =>

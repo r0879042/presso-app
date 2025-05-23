@@ -39,7 +39,7 @@ function App() {
       <Route path="/vertuo" element={<Vertuo />} />
       <Route path="/flavour" element={<Flavour addToCart={addToCart} />} />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-      <Route path="/checkout" element={<Checkout />} />
+      
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode />} />

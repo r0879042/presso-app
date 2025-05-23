@@ -5,7 +5,23 @@ import SearchBar from '../components/SearchBar';
 import Navbar from '../components/Navbar';
 import "../styles/responsive.scss";
 
+const priceMap = {
+  // Original
+  "Paris Espresso": "price_1RRi8PDtRlajemAypU4F0YRA",
+  "Vienna Lungo": "price_1RRhS3DtRlajemAyn21pjfVU",
+  "Stockholm Lungo": "price_1RRi4EDtRlajemAySwy8ukJY",
+  "Tokyo Lungo": "price_1RRi7gDtRlajemAy4yLAYZ8F",
+  "Cape Town Lungo": "price_1RRi5LDtRlajemAykhs49GNX",
+  "Shanghai Lungo": "price_1RRiPxDtRlajemAy65AzDwO9",
 
+  // Vertuo
+  "Paris Espresso Vertuo": "price_1RRiKfDtRlajemAyR1ofOc5N",
+  "Vienna Lungo Vertuo": "price_1RRiMEDtRlajemAysbaSTnVe",
+  "Stockholm Lungo Vertuo": "price_1RRiPJDtRlajemAyLoHrnWzU",
+  "Tokyo Lungo Vertuo": "price_1RRiNKDtRlajemAyY8SycFWD",
+  "Cape Town Lungo Vertuo": "price_1RRiO5DtRlajemAymuLnkIFj",
+  "Shanghai Lungo Vertuo": "price_1RRiQfDtRlajemAyxrjwOYOW"
+};
 
 function Find() {
   const navigate = useNavigate();
@@ -14,12 +30,19 @@ function Find() {
   const [type, setType] = useState("Original");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data") // or /api/capsules depending on your route
-      .then((res) => res.json())
-      .then((data) => {
-        setCapsules(data);
+    fetch("http://127.0.0.1:8000/api/data")
+      .then(res => res.json())
+      .then(data => {
+        // Add price_id to each capsule
+        const enriched = data.map(capsule => ({
+          ...capsule,
+          price_id: priceMap[
+            capsule.type === "Vertuo" ? capsule.name + " Vertuo" : capsule.name
+          ] || null
+        }));
+        setCapsules(enriched);
       })
-      .catch((err) => console.error("Failed to fetch capsules", err));
+      .catch(err => console.error("Failed to fetch capsules", err));
   }, []);
 
 
