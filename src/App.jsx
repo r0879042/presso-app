@@ -42,9 +42,9 @@ function App() {
       
       <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route path="/tastingpage" element={<TastingPage />} />
-      <Route path="/sessioncode" element={<SessionCode />} />
+      <Route path="/sessioncode" element={<SessionCode setCart={setCart} />} />
       <Route path="/quiz" element={<Quiz />} />
-      <Route path="/recommendations/:sessionCode" element={<Recommendations />} />
+      <Route path="/recommendations/:sessionCode" element={<Recommendations setCart={setCart} />} />
       <Route path="/receipt" element={<Receipt />} />
     </Routes>
   );

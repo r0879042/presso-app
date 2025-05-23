@@ -14,7 +14,7 @@ const Receipt = () => {
 
   return (
     <div className="receipt-container" onClick={() => navigate('/')}>
-      <Button className="print" onClick={print}>Print</Button>
+      <Button variant="success" className="action-button m-3" onClick={print}>Print</Button>
       <Card className="receipt-card">
         <Card.Body>
           <div className="receipt-title">Receipt</div>
