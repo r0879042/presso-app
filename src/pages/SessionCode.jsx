@@ -10,9 +10,11 @@ const SessionCode = ({ setCart }) => {
   const [showToast, setShowToast] = useState(false);
   const [code, setCode] = useState('');
   const navigate = useNavigate();
+ const backendURL = import.meta.env.VITE_BACKEND_API_URL;
+
 
     const checkSession = () => {
-      fetch('http://127.0.0.1:8000/api/session/' + code)
+      fetch(`${backendURL}/api/session/` + code)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -34,7 +36,7 @@ const SessionCode = ({ setCart }) => {
   };
 
    const getRecommendations = () => {
-    fetch('http://127.0.0.1:8000/api/answercapsules/' + code)
+    fetch(`${backendURL}/api/answercapsules/` + code)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

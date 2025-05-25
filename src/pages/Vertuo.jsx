@@ -28,9 +28,10 @@ function Vertuo() {
   const [capsules, setCapsules] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("Vertuo");
+  const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data")
+    fetch(`${backendURL}/api/data`)
       .then(res => res.json())
       .then(data => {
         // Add price_id to each capsule

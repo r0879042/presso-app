@@ -11,13 +11,15 @@ const Quiz = () => {
   const [currentOptions, setCurrentOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(1);
   const [currentSession, setCurrentSession] = useState('');
+  // Get the correct backend url
+  const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
   useEffect(() => {
     setQuestion(1);
   }, []);
 
   const getSessionAndSetAnswer = () => {
-    fetch('http://127.0.0.1:8000/api/session')
+    fetch(`${backendURL}/api/session`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -34,7 +36,7 @@ const Quiz = () => {
   };
 
   const setQuestion = (id) => {
-    fetch('http://127.0.0.1:8000/api/question/' + id)
+    fetch(`${backendURL}/api/question/` + id)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -63,7 +65,7 @@ const Quiz = () => {
         body: JSON.stringify({ sessionCode, questionId, answerId })
     };
 
-    fetch('http://127.0.0.1:8000/api/sessionanswer', requestOptions)
+    fetch(`${backendURL}/api/sessionanswer`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

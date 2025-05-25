@@ -27,6 +27,9 @@ const Cart = ({ cart, setCart }) => {
 
   const handlePay = async () => {
 
+    // Get the correct backend url
+    const backendURL = import.meta.env.VITE_BACKEND_API_URL;
+    
     // Adding the cart in the bankend
     const cartCopy = cart;
 
@@ -35,7 +38,7 @@ const Cart = ({ cart, setCart }) => {
       quantity: item.quantity,     
     }));
 
-     await fetch('http://127.0.0.1:8000/api/cart', {
+    await fetch(`${backendURL}/api/cart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',    
