@@ -74,3 +74,23 @@
   margin-top: 24px;
   
 }
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.empty-cart-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.empty-cart-text {
+  font-size: 1.1rem;
+  font-family: 'Georgia', serif;
+  color: #333;
+}

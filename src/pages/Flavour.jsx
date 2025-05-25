@@ -22,18 +22,11 @@ const Flavour = ({addToCart}) => {
 
         <div className="capsule-info">
           <strong className="capsule-name">{capsule.name}</strong>
-          <button
-            className="add-to-cart-btn"
-            onClick={() => {
-              addToCart(capsule);
-              navigate('/cart');
-            }}
-          >
-            Add to cart
-          </button>
+          <strong className="capsule-price"> € {capsule.price}</strong>
         </div>
 
         <div className="capsule-description">
+          <h3 className="flavour-title">{capsule.flavourTitle}</h3>
           <p className="flavour-title">Spicy & Woody</p>
           <p className="flavour-text">
             Inspired by multicultural Palermo where coffee is a ritual, 
@@ -41,10 +34,24 @@ const Flavour = ({addToCart}) => {
           </p>
 
           <div className="tasting-modes">
-            <div className="mode">Ristretto 25 ml</div>
-            <div className="mode">Espresso 40 ml</div>
+            <h4>Tasting modes</h4>
+
+            <div className="mode">
+              <div >Ristretto 25 ml</div>
+              <div >Espresso 40 ml</div>
+            </div>
           </div>
         </div>
+        
+        <button
+          className="add-to-cart-btn"
+          onClick={() => {
+            addToCart(capsule);
+            navigate('/cart');
+          }}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );

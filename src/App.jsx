@@ -15,8 +15,8 @@ import Receipt from './pages/Receipt';
 
 
 
+
 function App() {
-  
   const [cart, setCart] = useState([]);
 
   const addToCart = (newCapsule) => {
@@ -32,6 +32,8 @@ function App() {
       setCart([...cart, { ...newCapsule, quantity: 1 }]);
     }
   };
+
+  // ⬇️ YOUR return should be inside here
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -39,8 +41,7 @@ function App() {
       <Route path="/vertuo" element={<Vertuo />} />
       <Route path="/flavour" element={<Flavour addToCart={addToCart} />} />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-      <Route path="/checkout" element={<Checkout />} />
-      <Route path="/payment-success" element={<PaymentSuccess />} />
+      <Route path="/payment-success" element={<PaymentSuccess setCart={setCart} />} />
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode setCart={setCart} />} />
       <Route path="/quiz" element={<Quiz />} />
@@ -51,3 +52,6 @@ function App() {
 }
 
 export default App;
+
+
+

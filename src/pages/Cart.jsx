@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
 import '../styles/Cart.scss';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51RQSbaDtRlajemAykbZod6CrrxAAo6WD5lTKhR812bqERUHRbRpM9s11041KFzcFJCeESs0sspKl6sJXGXesrIyl00U72Wyspr');
 
 const Cart = ({ cart, setCart }) => {
   const navigate = useNavigate();
@@ -21,13 +24,34 @@ const Cart = ({ cart, setCart }) => {
     );
   };
 
+  /**
+   * // Formating so that the cart has only a capsule_id and quantity
+      const formattedCart = cart.map(item => ({
+        capsule_id: item.id,  
+        quantity: item.quantity,     
+      }));
+  
+       await fetch('http://127.0.0.1:8000/api/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',    
+          'Accept': 'application/json',  
+        },
+        credentials: 'include',
+        body: JSON.stringify({ items: formattedCart }), 
+      });
+   */
+
   const handlePay = async () => {
-    try {
-      // Formating so that the cart has only a capsule_id and quantity
-    const formattedCart = cart.map(item => ({
+
+    // Adding the cart in the bankend
+    const cartCopy = cart;
+    const formattedCart = cartCopy.map(item => ({
       capsule_id: item.id,  
       quantity: item.quantity,     
     }));
+
+    console.log("Formatted cart: ", formattedCart);
 
      await fetch('http://127.0.0.1:8000/api/cart', {
       method: 'POST',
@@ -38,22 +62,41 @@ const Cart = ({ cart, setCart }) => {
       credentials: 'include',
       body: JSON.stringify({ items: formattedCart }), 
     });
-  
-      navigate('/checkout');
-    } catch (error) {
-      console.error("Failed to send cart to backend:", error);
+    
+    // Making payments using Stripe
+    const stripe = await stripePromise;
+
+    const lineItems = cart.map(item => ({
+      price: item.price_id,    
+      quantity: item.quantity, 
+    }));
+
+    console.log("Line Items: ", lineItems);
+
+    const error = await stripe.redirectToCheckout({
+      lineItems,
+      mode: 'payment',
+      successUrl: 'http://localhost:5173/payment-success',
+      cancelUrl: 'http://localhost:5173/cart',
+    });
+
+    if (error) {
+      console.error('Stripe error:', error);
     }
   };
 
   if (!cart.length) {
     return (
-      <div>
+      <div className="bag-page">
         <Previous onClick={() => navigate(-1)} />
-        <div>No items in bag.</div>
+        <div className="empty-cart">
+          <img src="/capsules/empty-cart.png" alt="Empty Cart" className="empty-cart-img" />
+          <p className="empty-cart-text">No Product in the cart</p>
+        </div>
+        <Navbar />
       </div>
     );
   }
-
   return (
     <div className="bag-page">
       <Previous onClick={() => navigate(-1)} />
@@ -82,7 +125,7 @@ const Cart = ({ cart, setCart }) => {
       <div className="pay-button text-center my-4">
       <button
   className="btn btn-success pay-btn" 
-  onClick={() => handlePay()}
+  onClick={ handlePay}
   >
   Pay
 </button>

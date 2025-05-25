@@ -5,64 +5,56 @@
 }
 
 .flavour-content {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 16px;
-  padding: 24px 16px;
-  margin-top: 40px;
-  max-width: 360px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 24px;
+  max-width: 430px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .capsule-img-box {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   .capsule-img {
-    max-height: 90px;
+    max-height: 120px;
     object-fit: contain;
   }
 }
 
 .capsule-info {
-  width: 100%;
+  background-color: #fdfbf8;
+  border-radius: 16px;
+  padding: 10px 20px;
+  margin: 0 auto 20px;
+  font-weight: bold;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 
   .capsule-name {
     font-family: 'Georgia', serif;
     font-size: 1.2rem;
     color: #000;
   }
-
-  .add-to-cart-btn {
-    background-color: #52A867;
-    color: #fff;
-    font-size: 0.85rem;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #449857;
-    }
+  .capsule-price {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: #000;
   }
 }
 
 .capsule-description {
-  width: 100%;
+
+  text-align: left;
 
   .flavour-title {
     font-family: 'Georgia', serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 8px;
     color: #000;
@@ -70,20 +62,56 @@
 
   .flavour-text {
     font-family: 'Georgia', serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #000;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 }
 
 .tasting-modes {
+  margin-top: 1.5rem;
+  margin-bottom: 2.0rem;
+
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+
+  h4{
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-align: left;
+
+  }
 
   .mode {
-    font-family: 'Georgia', serif;
-    font-size: 0.85rem;
-    color: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 0.9rem;
+
+    img {
+      width: 28px;
+      height: auto;
+      margin-bottom: 0.4rem;
+    }
+  }
+}
+
+.add-to-cart-btn {
+  background-color: #52A867;
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #449857;
   }
 }
