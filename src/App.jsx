@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Find from './pages/Find';
 import Vertuo from './pages/Vertuo';
 import Flavour from './pages/Flavour';
 import Cart from './pages/Cart';
 import PaymentSuccess from './pages/PaymentSuccess';
-import Checkout from './pages/Checkout';
 import TastingPage from './pages/TastingPage';
 import SessionCode from './pages/SessionCode';
 import Quiz from './pages/Quiz';
@@ -19,6 +18,12 @@ import Receipt from './pages/Receipt';
 function App() {
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem('cart'));
+    if (savedCart) setCart(savedCart);
+  }, []);
+
+  
   const addToCart = (newCapsule) => {
     const exists = cart.find(item => item.name === newCapsule.name);
     if (exists) {

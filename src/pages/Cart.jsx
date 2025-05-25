@@ -24,34 +24,15 @@ const Cart = ({ cart, setCart }) => {
     );
   };
 
-  /**
-   * // Formating so that the cart has only a capsule_id and quantity
-      const formattedCart = cart.map(item => ({
-        capsule_id: item.id,  
-        quantity: item.quantity,     
-      }));
-  
-       await fetch('http://127.0.0.1:8000/api/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',    
-          'Accept': 'application/json',  
-        },
-        credentials: 'include',
-        body: JSON.stringify({ items: formattedCart }), 
-      });
-   */
-
   const handlePay = async () => {
 
     // Adding the cart in the bankend
     const cartCopy = cart;
+
     const formattedCart = cartCopy.map(item => ({
       capsule_id: item.id,  
       quantity: item.quantity,     
     }));
-
-    console.log("Formatted cart: ", formattedCart);
 
      await fetch('http://127.0.0.1:8000/api/cart', {
       method: 'POST',
@@ -71,7 +52,7 @@ const Cart = ({ cart, setCart }) => {
       quantity: item.quantity, 
     }));
 
-    console.log("Line Items: ", lineItems);
+    localStorage.setItem('cart', JSON.stringify(cart));
 
     const error = await stripe.redirectToCheckout({
       lineItems,
