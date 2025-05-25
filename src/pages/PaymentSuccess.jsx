@@ -3,8 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import '../styles/PaymentSuccess.scss';
 
-const PaymentSuccess = () => {
+const PaymentSuccess = ({ setCart }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.removeItem('cart');
+    setCart([]);
+
+    const timeout = setTimeout(() => {
+      navigate('/');
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
 
   return (
     <div className="payment-success-page">

@@ -86,10 +86,10 @@ function Vertuo() {
           key={idx}
           className="capsule-card"
         >
-          <div className="capsule-card" key={idx}>
-            <img src={`/capsules/${capsule.image}`} alt={capsule.name} />
-            <p>{capsule.name}</p>
-          </div>
+          
+          <img src={`/capsules/${capsule.image}`} alt={capsule.name} />
+          <p>{capsule.name}</p>
+          
         </Link>
           
         ))}

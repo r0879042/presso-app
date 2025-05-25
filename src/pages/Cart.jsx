@@ -87,13 +87,16 @@ const Cart = ({ cart, setCart }) => {
 
   if (!cart.length) {
     return (
-      <div>
+      <div className="bag-page">
         <Previous onClick={() => navigate(-1)} />
-        <div>No items in bag.</div>
+        <div className="empty-cart">
+          <img src="/capsules/empty-cart.png" alt="Empty Cart" className="empty-cart-img" />
+          <p className="empty-cart-text">No Product in the cart</p>
+        </div>
+        <Navbar />
       </div>
     );
   }
-
   return (
     <div className="bag-page">
       <Previous onClick={() => navigate(-1)} />
