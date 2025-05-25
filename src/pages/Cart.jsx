@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
+import Popup from '../components/Popup';
 import '../styles/Cart.scss';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -66,6 +67,16 @@ const Cart = ({ cart, setCart }) => {
     }
   };
 
+  const [showPopup, setShowPopup] = useState(false);
+
+  const leaveOrder = () => {
+    navigate(-1);
+  };
+
+  const continueOrder = () => {
+    handlePay();
+  };
+
   if (!cart.length) {
     return (
       <div className="bag-page">
@@ -80,7 +91,7 @@ const Cart = ({ cart, setCart }) => {
   }
   return (
     <div className="bag-page">
-      <Previous onClick={() => navigate(-1)} />
+      <Previous onClick={() => setShowPopup(true)} />
 
       <h2 className="text-center my-3">BAG</h2>
 
@@ -113,6 +124,11 @@ const Cart = ({ cart, setCart }) => {
       </div>
 
       <Navbar />
+      <Popup
+        show={showPopup}
+        onLeave={leaveOrder}
+        onContinue={continueOrder}
+      />
     </div>
   );
 };
