@@ -8,13 +8,14 @@ const Recommendations = ({ setCart }) => {
  const navigate = useNavigate();
  let { sessionCode } = useParams();
  const [capsules, setCapsules] = useState([]);
+ const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
  useEffect(() => {
      getRecommendations(sessionCode);
  }, []);
 
  const getRecommendations = () => {
-    fetch('http://127.0.0.1:8000/api/answercapsules/' + sessionCode)
+    fetch(`${backendURL}/api/answercapsules/` + sessionCode)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
