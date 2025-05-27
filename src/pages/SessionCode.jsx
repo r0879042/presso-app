@@ -5,6 +5,7 @@ import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
 import ToastMessage from '../components/ToastMessage';
 import { Container, Button } from 'react-bootstrap';
+import { transformCapsules } from '../others/transformCapsules';
 
 const SessionCode = ({ setCart }) => {
   const [showToast, setShowToast] = useState(false);
@@ -44,9 +45,11 @@ const SessionCode = ({ setCart }) => {
         return response.json();
       })
       .then(data => {
-        let cart = data.map(capsule =>
-          ({ ...capsule, quantity: 1 })
-        );
+
+        // Add price_id to each capsule
+        const enriched = transformCapsules(data);
+
+        let cart = enriched.map(capsule => ({ ...capsule, quantity: 1 }));
         setCart(cart);
       })
       .catch(error => {

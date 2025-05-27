@@ -1,25 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import Navbar from '../components/Navbar';
 import Popup from '../components/Popup';
 import '../styles/Cart.scss';
 import { loadStripe } from '@stripe/stripe-js';
+import backendURL from '../../backendURL';
+import frontendURL from '../../frontendURL';
 
 const stripePromise = loadStripe('pk_test_51RQSbaDtRlajemAykbZod6CrrxAAo6WD5lTKhR812bqERUHRbRpM9s11041KFzcFJCeESs0sspKl6sJXGXesrIyl00U72Wyspr');
 
 const Cart = ({ cart, setCart }) => {
   const navigate = useNavigate();
-  const increaseQuantity = (name) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const location = window.location;
+  const [paymentCanceled, setPaymentCanceled] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('canceled') === 'true') {
+      setPaymentCanceled(true);
+      // Clean URL 
+      window.history.replaceState({}, document.title, location.pathname);
+    }
+  }, []);
+  
+  const increaseQuantity = (name, type) => {
     setCart(cart.map(item =>
-      item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+      item.name === name && item.type === type
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
     ));
   };
-
-  const decreaseQuantity = (name) => {
+  
+  const decreaseQuantity = (name, type) => {
     setCart(cart
       .map(item =>
-        item.name === name ? { ...item, quantity: item.quantity - 1 } : item
+        item.name === name && item.type === type
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
       )
       .filter(item => item.quantity > 0)
     );
@@ -27,12 +46,10 @@ const Cart = ({ cart, setCart }) => {
 
   const handlePay = async () => {
 
-    // Get the correct backend url
-    const backendURL = import.meta.env.VITE_BACKEND_API_URL;
-    
     // Adding the cart in the bankend
     const cartCopy = cart;
 
+    
     const formattedCart = cartCopy.map(item => ({
       capsule_id: item.id,  
       quantity: item.quantity,     
@@ -61,8 +78,8 @@ const Cart = ({ cart, setCart }) => {
     const error = await stripe.redirectToCheckout({
       lineItems,
       mode: 'payment',
-      successUrl: 'http://localhost:5173/payment-success',
-      cancelUrl: 'http://localhost:5173/cart',
+      successUrl: `${frontendURL}/payment-success`,
+      cancelUrl: `${frontendURL}/cart?canceled=true`,
     });
 
     if (error) {
@@ -70,9 +87,13 @@ const Cart = ({ cart, setCart }) => {
     }
   };
 
-  const [showPopup, setShowPopup] = useState(false);
+  
 
   const leaveOrder = () => {
+    if (paymentCanceled) {
+      navigate("/");
+      return ;
+    }
     navigate(-1);
   };
 
@@ -110,21 +131,22 @@ const Cart = ({ cart, setCart }) => {
     </div>
 
     <div className="quantity-controls d-flex align-items-center">
-      <button className="btn btn-success btn-sm" onClick={() => decreaseQuantity(item.name)}>-</button>
-      <div className="quantity-number">{item.quantity}</div>
-      <button className="btn btn-success btn-sm" onClick={() => increaseQuantity(item.name)}>+</button>
+    <button className="btn btn-success btn-sm" onClick={() => decreaseQuantity(item.name, item.type)}> - </button>
+    <div className="quantity-number">{item.quantity}</div>
+    <button className="btn btn-success btn-sm" onClick={() => increaseQuantity(item.name, item.type)}> + </button>
     </div>
   </div>
-))}
+   ))}
 
-      <div className="pay-button text-center my-4">
+    <div className="pay-button text-center my-4"> 
       <button
-  className="btn btn-success pay-btn" 
-  onClick={ handlePay}
-  >
-  Pay
-</button>
-      </div>
+       className="btn btn-success pay-btn" 
+
+       onClick={ handlePay}
+        >
+          Pay
+      </button>
+   </div>
 
       <Navbar />
       <Popup
