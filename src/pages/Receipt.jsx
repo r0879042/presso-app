@@ -19,7 +19,7 @@ const Receipt = () => {
         <Card.Body>
           <div className="receipt-title">Receipt</div>
           <hr />
-          <div className="receipt-items">{capsules.map(item => <div key={item.id}>{item.name + " - " + item.type}</div>)}</div>
+          <div className="receipt-items">{capsules.map(item => <div key={item.id}>{item.name + " - " + item.type + " - " + item.price_id}</div>)}</div>
           <hr />
           <div className="tasting-code-title">Tasting code</div>
           <div className="tasting-code">{sessionCode}</div>

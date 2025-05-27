@@ -3,12 +3,13 @@ import { Container, ButtonGroup, Button, Row, Col, Card } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom';
 import Previous from '../components/Previous';
 import '../styles/Recommendations.scss';
+import backendURL from '../../backendURL';
+import { transformCapsules } from '../others/transformCapsules';
 
 const Recommendations = ({ setCart }) => {
  const navigate = useNavigate();
  let { sessionCode } = useParams();
  const [capsules, setCapsules] = useState([]);
- const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
  useEffect(() => {
      getRecommendations(sessionCode);
@@ -23,7 +24,9 @@ const Recommendations = ({ setCart }) => {
         return response.json();
       })
       .then(data => {
-        setCapsules(data);
+        // Add price_id to each capsule
+        const enriched = transformCapsules(data);
+        setCapsules(enriched);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -41,7 +44,7 @@ const Recommendations = ({ setCart }) => {
 
   const goToCart = () => {
     let cart = capsules.map(capsule =>
-        ({ ...capsule, quantity: 1 })
+      ({ ...capsule, quantity: 1 })
     );
     setCart(cart);
     navigate('/cart');
@@ -56,7 +59,7 @@ const Recommendations = ({ setCart }) => {
             <Card key={index} className="flavor-card">
               <Row className="align-items-center">
                 <Col xs={2} className="image-col">
-                  <img src={"/src/assets/images/capsules/" + capsule.image} alt={capsule.name} className="flavor-image" />
+                  <img src={`/capsules/${capsule.image}`} alt={capsule.name} className="flavor-image" />
                 </Col>
                 <Col xs={10} className="name-col">
                   <span className="flavor-name">{capsule.name} - {capsule.type}</span>

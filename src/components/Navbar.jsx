@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navbar.scss';
 import homeIcon from "../assets/icons/adress.svg";
 import findIcon from "../assets/icons/discover.svg";
@@ -8,22 +8,24 @@ import cartIcon from "../assets/icons/cart.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const currentPath = location.pathname;
+  
   return (
     <div className="navbar">
-      <div className="nav-item" onClick={() => navigate('/')}>
+      <div className={`nav-item ${currentPath === '/' ? 'active' : ''}`} onClick={() => navigate('/')}>
         <img src={homeIcon} alt="Home" className='nav-icon' />
         <span>Home</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/Find')}>
+      <div className={`nav-item ${currentPath === '/Find' ? 'active' : ''}`} onClick={() => navigate('/Find')}>
         <img src={findIcon} alt="Find" className='nav-icon'/>
         <span>Find</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/quiz')}>
+      <div className={`nav-item ${currentPath === '/quiz' ? 'active' : ''}`} onClick={() => navigate('/quiz')}>
         <img src={quizIcon} alt="Quiz" className='nav-icon' />
         <span>Quiz</span>
       </div>
-      <div className="nav-item" onClick={() => navigate('/cart')}>
+      <div className={`nav-item ${currentPath === '/cart' ? 'active' : ''}`} onClick={() => navigate('/cart')}>
         <img src={cartIcon} alt="Cart" className='nav-icon' />
         <span>Cart</span>
       </div>

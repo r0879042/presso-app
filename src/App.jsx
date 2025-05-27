@@ -25,10 +25,13 @@ function App() {
 
   
   const addToCart = (newCapsule) => {
-    const exists = cart.find(item => item.name === newCapsule.name);
+    const exists = cart.find(item =>
+      item.name === newCapsule.name && item.type === newCapsule.type
+    );
+  
     if (exists) {
       const updatedCart = cart.map(item =>
-        item.name === newCapsule.name
+        item.name === newCapsule.name && item.type === newCapsule.type
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );

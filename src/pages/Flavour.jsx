@@ -26,8 +26,9 @@ const Flavour = ({addToCart}) => {
         </div>
 
         <div className="capsule-description">
-          <h3 className="flavour-title">{capsule.flavourTitle}</h3>
-          <p className="flavour-title">Spicy & Woody</p>
+          <h3 className="flavour-title">
+            {capsule.flavourTitle || "Spicy & Woody"}
+          </h3>
           <p className="flavour-text">
             Inspired by multicultural Palermo where coffee is a ritual, 
             this dark roast blend of Robusta and Arabica brings spicy, woody and cocoa notes.

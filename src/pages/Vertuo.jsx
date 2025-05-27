@@ -3,25 +3,7 @@ import "../styles/Vertuo.scss";
 import {Link, useNavigate } from "react-router-dom";
 import SearchBar from '../components/SearchBar';
 import "../styles/responsive.scss";
-
-
-const priceMap = {
-  // Original
-  "Paris Espresso": "price_1RRi8PDtRlajemAypU4F0YRA",
-  "Vienna Lungo": "price_1RRhS3DtRlajemAyn21pjfVU",
-  "Stockholm Lungo": "price_1RRi4EDtRlajemAySwy8ukJY",
-  "Tokyo Lungo": "price_1RRi7gDtRlajemAy4yLAYZ8F",
-  "Cape Town Lungo": "price_1RRi5LDtRlajemAykhs49GNX",
-  "Shanghai Lungo": "price_1RRiPxDtRlajemAy65AzDwO9",
-
-  // Vertuo
-  "Paris Espresso Vertuo": "price_1RRiKfDtRlajemAyR1ofOc5N",
-  "Vienna Lungo Vertuo": "price_1RRiMEDtRlajemAysbaSTnVe",
-  "Stockholm Lungo Vertuo": "price_1RRiPJDtRlajemAyLoHrnWzU",
-  "Tokyo Lungo Vertuo": "price_1RRiNKDtRlajemAyY8SycFWD",
-  "Cape Town Lungo Vertuo": "price_1RRiO5DtRlajemAymuLnkIFj",
-  "Shanghai Lungo Vertuo": "price_1RRiQfDtRlajemAyxrjwOYOW"
-};
+import { transformCapsules } from '../others/transformCapsules';
 
 function Vertuo() {
   const navigate = useNavigate();
@@ -35,12 +17,7 @@ function Vertuo() {
       .then(res => res.json())
       .then(data => {
         // Add price_id to each capsule
-        const enriched = data.map(capsule => ({
-          ...capsule,
-          price_id: priceMap[
-            capsule.type === "Vertuo" ? capsule.name + " Vertuo" : capsule.name
-          ] || null
-        }));
+        const enriched = transformCapsules(data);
         setCapsules(enriched);
       })
       .catch(err => console.error("Failed to fetch capsules", err));
@@ -72,8 +49,11 @@ function Vertuo() {
         </button>
       </div>
 
+      
+
       {/* Our new SearchBar component */}
       <SearchBar data={capsules} onSelect={(item) => setSelected(item)} />
+
 
       <h4 className="section-title">Mug(230 ml)</h4>
 
