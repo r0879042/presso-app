@@ -74,6 +74,7 @@
       }
 
       .action-button {
+        margin-top: math.div(variables.$margin, 2);
         width: 45%;
         &:disabled:not(.selected) {
           opacity: 0.6;
