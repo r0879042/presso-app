@@ -42,7 +42,6 @@ function App() {
     }
   };
 
-  // ⬇️ YOUR return should be inside here
   return (
     <Routes>
       <Route path="/" element={<Welcome />} />
