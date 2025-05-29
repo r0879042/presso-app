@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, ButtonGroup, Button, Row, Col, Card } from 'react-bootstrap';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import Previous from '../components/Previous';
 import '../styles/Recommendations.scss';
 import backendURL from '../../backendURL';
 import { transformCapsules } from '../others/transformCapsules';
@@ -52,7 +51,6 @@ const Recommendations = ({ setCart }) => {
 
   return (
     <div>
-      <Previous onClick={() => navigate(-1)} />
       <Container className="recommendation-page center">
           <div className="title">Recommended flavours to taste</div>
           {capsules.map((capsule, index) => (

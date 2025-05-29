@@ -6,16 +6,15 @@ import '../styles/Quiz.scss';
 
 const Quiz = () => {
   const navigate = useNavigate();
-  const [currentQuestionId, setCurrentQuestionId] = useState(1);
-  const [currentQuestion, setCurrentQuestion] = useState('');
-  const [currentOptions, setCurrentOptions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [selectedOption, setSelectedOption] = useState(1);
   const [currentSession, setCurrentSession] = useState('');
   // Get the correct backend url
   const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
   useEffect(() => {
-    setQuestion(1);
+    getQuestions();
   }, []);
 
   const getSessionAndSetAnswer = () => {
@@ -35,8 +34,8 @@ const Quiz = () => {
       });
   };
 
-  const setQuestion = (id) => {
-    fetch(`${backendURL}/api/question/` + id)
+  const getQuestions = () => {
+    fetch(`${backendURL}/api/question`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -44,13 +43,8 @@ const Quiz = () => {
         return response.json();
       })
       .then(data => {
-        if(data.question != undefined){
-          setCurrentQuestionId(id);
-          setCurrentQuestion(data.question);
-          setCurrentOptions(data.answers);
-        }
-        else{
-          navigate('/recommendations/' + currentSession);
+        if(data != undefined){
+          setQuestions(data);
         }
       })
       .catch(error => {
@@ -81,38 +75,46 @@ const Quiz = () => {
   };
 
   const previousQuestion = () => {
-    if(currentQuestionId === 1){
+    if(currentQuestionId === 0){
       navigate(-1);
     }
     else{
-      setQuestion(currentQuestionId - 1);
+      setCurrentQuestionId(currentQuestionId - 1);
     }
   };
 
   const nextQuestion = () => {
-    if(currentSession == ''){
-      getSessionAndSetAnswer();
+    if(currentQuestionId < questions.length - 1){
+        if(currentSession == ''){
+          getSessionAndSetAnswer();
+        }
+        else{
+          setAnswer(currentSession, currentQuestionId, selectedOption);
+        }
+        setCurrentQuestionId(currentQuestionId + 1);
     }
     else{
-      setAnswer(currentSession, currentQuestionId, selectedOption);
+      navigate('/recommendations/' + currentSession);
     }
-    setQuestion(currentQuestionId + 1);
   };
 
   return  (
     <div className="quiz">
       <Previous onClick={() => previousQuestion()} />
+      <div className="question-counter p-3">
+        {currentQuestionId + 1} / {questions.length}
+      </div>
       <div className="center">
         <Card className="question">
           <Card.Body>
             <Card.Text>
-              {currentQuestion}
+              {questions[currentQuestionId] && questions[currentQuestionId].question}
             </Card.Text>
           </Card.Body>
         </Card>
 
         <Form className="form">
-          {currentOptions.map((option, index) => (
+          {questions[currentQuestionId] && questions[currentQuestionId].answers.map((option, index) => (
             <Form.Check 
               type="radio"
               key={index}

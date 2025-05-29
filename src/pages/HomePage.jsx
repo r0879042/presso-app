@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./../styles/HomePage.scss";
 import { Container, Row, Col, Card } from 'react-bootstrap';
@@ -7,6 +8,30 @@ import search from '../assets/images/coffee-search.png'
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [numberOfquestions, setNumberOfquestions] = useState(5);
+  const backendURL = import.meta.env.VITE_BACKEND_API_URL;
+  
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
+  const getQuestions = () => {
+    fetch(`${backendURL}/api/question`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if(data != undefined){
+          setNumberOfquestions(data.length);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
   return (
         <Container className="coffee-options my-4 center">
@@ -15,7 +40,7 @@ const HomePage = () => {
                     <Card className="option-card shadow-sm" onClick={() => navigate('/quiz')}>
                         <Card.Body>
                             <Card.Title className="option-title">Coffee quiz</Card.Title>
-                            <Card.Text className="option-text">This 5 question quiz will craft your ideal cup of coffee to try</Card.Text>
+                            <Card.Text className="option-text">This {numberOfquestions} question quiz will craft your ideal cup of coffee to try</Card.Text>
                             <img src={quiz} alt="Coffee quiz" className="option-image" />
                         </Card.Body>
                     </Card>
