@@ -33,9 +33,9 @@ Presso is a  Progressive Web App designed to help users explore and find Nespres
 ## 🧑‍💻 Getting Started
 
 ```bash
-## Fontend
+## Frontend
 
-# clone the repo
+# Clone the repo
 git clone https://github.com/r0879042/presso-app.git
 
 # To go into the project
