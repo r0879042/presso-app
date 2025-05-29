@@ -3,6 +3,33 @@
 @use 'sass:math';
 
 .coffee-options {
+     .logo {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      font-family: 'Playfair Display';
+      align-items: center;
+      font-size: variables.$small-title-size;
+      margin-left: 30px;
+
+      img {
+        width: 40px;
+      }
+
+      @include mixins.respond-to('phone') {
+        font-size: variables.$medium-title-size;
+        margin-left: 60px;
+
+        img {
+            width: 70px;
+        }
+      }
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$big-title-size;
+      }
+    }
+
     .menu {
         justify-content: initial;
         gap: 20px;
@@ -22,17 +49,15 @@
                 overflow: visible;
                 transition: transform 0.2s, box-shadow 0.2s;
                 cursor: pointer;
-                height: 160px;
+                height: 25vh;
                 padding: 15px;
 
                 @include mixins.respond-to('phone') {
-                    height: 270px;
                     padding: 20px;
                 }
 
                 @include mixins.respond-to('tablet') {
                     padding: 30px 20px;
-                    height: 300px;
                 }
 
                 &:hover {

@@ -9,7 +9,7 @@ const Receipt = () => {
   const { sessionCode, capsules } = location.state || { sessionCode: '', capsules: [] };
 
   function print() {
-      window.print()
+      window.print();
   }
 
   return (

@@ -1,0 +1,20 @@
+    @use "./variables";
+    @use "./mixins";
+
+    .toast{
+        @include mixins.respond-to('tablet') {
+            min-width: 600px;
+        }
+
+        .toast-text {
+            font-size: variables.$small-text-size;
+
+            @include mixins.respond-to('phone') {
+                font-size: variables.$medium-text-size;
+            }
+
+            @include mixins.respond-to('tablet') {
+                font-size: variables.$big-text-size;
+            }
+        }
+    }

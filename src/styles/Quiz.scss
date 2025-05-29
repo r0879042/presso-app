@@ -19,13 +19,20 @@
     }
 
    .center {
-      margin: variables.$margin;
+      .gif {
+        max-width: 100px;
+        height: auto;
+        display: inline-block;
+      }
+
+      @include mixins.respond-to('phone') {
+        .gif {
+          max-width: 250px;
+        }
+      }
 
       .question {
         font-size: variables.$small-title-size;
-        border-radius: variables.$border-radius;
-        color: #ffffff;
-        background-color: #0D0E65;
         padding: 5px;
         text-align: center;
 
@@ -33,30 +40,48 @@
           font-size: variables.$medium-title-size;
         }
       }
-      .form {
-        margin: variables.$margin;
 
-        .answer {
-          font-size: variables.$small-text-size;
-          margin: math.div(variables.$margin, 2);
+      .option-button {
+        width: 100%;
+        background-color: variables.$secondary-color;
+        border: none;
+        color: #000;
+        padding: 0.75rem;
+        border-radius: variables.$border-radius;
+        font-size: variables.$small-text-size;
+        margin: math.div(variables.$margin, 2);
 
-          @include mixins.respond-to('phone') {
-            font-size: variables.$medium-text-size;
-            margin: variables.$margin;
-          }
+        &:focus,
+        &:active,
+        &.focus,
+        &:focus-visible {
+          background-color: variables.$secondary-color;
+        }
 
-          @include mixins.respond-to('tablet') {
-            font-size: variables.$big-text-size;
-            margin: variables.$margin * 2;
-          }
+        &.selected {
+          border: 1px solid #000;
+        }
+
+        @include mixins.respond-to('phone') {
+          font-size: variables.$medium-text-size;
+          margin: variables.$margin;
+        }
+
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$big-text-size;
+          margin: variables.$margin;
         }
       }
 
-      .next {
+      .action-button {
+        margin-top: math.div(variables.$margin, 2);
         width: 45%;
+        &:disabled:not(.selected) {
+          opacity: 0.6;
+        }
 
         @include mixins.respond-to('tablet') {
-           width: 30%;
+          width: 30%;
         }
       }
     }
