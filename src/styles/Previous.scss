@@ -2,7 +2,7 @@
 @use "./mixins";
 
 .previous-wrapper {
-    background-color: variables.$background-color; // light beige from the mockup
+    background-color: variables.$background-color; 
     padding: 1rem;
   
     button {

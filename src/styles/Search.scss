@@ -47,10 +47,10 @@
     list-style: none;
     padding: 8px 0;
     position: absolute;
-    top: 100%;       // 👈 Place directly below the search bar
+    top: 100%;      
     left: 50%;
-    transform: translateX(-50%); // 👈 Center horizontally
-    z-index: 10;     // 👈 Ensure it appears above other elements
+    transform: translateX(-50%);
+    z-index: 10;  
 
     li {
         padding: 10px 16px;
