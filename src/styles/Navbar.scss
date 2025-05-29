@@ -1,3 +1,5 @@
+@import '../styles/responsive.scss';
+
 .navbar {
   display: flex;
   justify-content: space-around;
@@ -37,20 +39,45 @@
   border-radius: 8px;
 }
 
-
-@media (max-width: 768px) {
-  
-}
-
-@media (max-width: 576px) {
+/* Mobile styles */
+@include respond-to-phone {
   .nav-item {
     font-size: 0.75rem; 
-    padding: 6px 12px;
+    padding: 6px 24px;
     
     .nav-icon {
-      width: 24px;
+      width: 20px;
+      height: 20px;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+/* Tablet styles */
+@include respond-to-tablet {
+  .nav-item {
+    font-size: 0.75rem; 
+    padding: 6px 44px;
+    
+    .nav-icon {
+      width: 44px;
       height: 24px;
       margin-bottom: 2px;
     }
   }
+}
+
+/* Tablet styles in landscape/sideview mode */
+@include respond-to-tablet-landscape {
+  .nav-item {
+    font-size: 0.75rem; 
+    padding: 4px 84px;
+    
+    .nav-icon {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 2px;
+    }
+  }
+
 }

@@ -1,23 +1,43 @@
-// Mobile First Design (default styles) apply normally
-// Then override for bigger devices using media queries
+@import './mixins'; // Imports _mixins.scss
 
-// Small tablets and larger (portrait mode) - from 600px up
+// Small tablets and up (portrait or landscape)
+@mixin respond-to-phone {
+  @media (min-width: 300px) {
+    @content;
+  }
+}
+
+// Large tablets and small laptops
 @mixin respond-to-tablet {
-    @media (min-width: 600px) {
-      @content;
-    }
+  @media (min-width: 768px) {
+    @content;
   }
-  
-  // Large tablets and small laptops - from 768px up
-  @mixin respond-to-large-tablet {
-    @media (min-width: 768px) {
-      @content;
-    }
+}
+
+// Desktop and up
+@mixin respond-to-desktop {
+  @media (min-width: 1200px) {
+    @content;
   }
-  
-  // Desktop and large kiosk screens - from 1200px up
-  @mixin respond-to-desktop {
-    @media (min-width: 1200px) {
-      @content;
-    }
+}
+
+// Any device in landscape mode
+@mixin respond-to-landscape {
+  @media (orientation: landscape) {
+    @content;
   }
+}
+
+// Large tablets and up, only in landscape
+@mixin respond-to-tablet-landscape {
+  @media (min-width: 768px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+// Phones in landscape (e.g. iPhones sideways)
+@mixin respond-to-phone-landscape {
+  @media (max-width: 844px) and (orientation: landscape) {
+    @content;
+  }
+}

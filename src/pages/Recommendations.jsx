@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Row, Col, Card } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 import '../styles/Recommendations.scss';
 import backendURL from '../../backendURL';
 import { transformCapsules } from '../others/transformCapsules';
 
 const Recommendations = ({ setCart }) => {
- const navigate = useNavigate();
- let { sessionCode } = useParams();
- const [capsules, setCapsules] = useState([]);
+  const navigate = useNavigate();
+  let { sessionCode } = useParams();
+  const [capsules, setCapsules] = useState([]);
+  const [searchParams] = useSearchParams();
+  const fromSessionCodePage = searchParams.get('from') === 'session';
 
  useEffect(() => {
      getRecommendations(sessionCode);
@@ -66,7 +68,7 @@ const Recommendations = ({ setCart }) => {
             </Card>
           ))}
           <div className="button-group">
-            <Button variant="success" className="action-button" onClick={printReceipt}>Print receipt</Button>
+            <Button variant="success" className="action-button" disabled={fromSessionCodePage} onClick={printReceipt}>Print receipt</Button>
             <Button variant="success" className="action-button" onClick={goToCart}>Next</Button>
           </div>
       </Container>
