@@ -29,10 +29,14 @@
     }
 
     .receipt-items {
-      @include mixins.centerText(variables.$small-title-size, variables.$margin);
+      @include mixins.centerText(variables.$small-text-size, variables.$margin);
 
       @include mixins.respond-to('tablet') {
-        font-size: variables.$medium-text-size;
+        font-size: variables.$big-text-size;
+      }
+
+      .receipt-item {
+        margin: math.div(variables.$margin, 2);
       }
     }
 
@@ -54,11 +58,11 @@
     }
 
     .receipt-note {
-      @include mixins.centerText(variables.$small-title-size, math.div(variables.$margin, 2));
+      @include mixins.centerText(variables.$small-text-size, math.div(variables.$margin, 2));
       color: #555;
 
       @include mixins.respond-to('tablet') {
-        font-size: variables.$medium-text-size;
+        font-size: variables.$big-text-size;
       }
     }
   }

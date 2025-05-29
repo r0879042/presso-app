@@ -3,6 +3,21 @@
 @use 'sass:math';
 
   .quiz{
+    .question-counter {
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      font-size: variables.$small-text-size;
+
+      @include mixins.respond-to('phone') {
+        font-size: variables.$medium-text-size;
+      }
+
+      @include mixins.respond-to('tablet') {
+        font-size: variables.$big-text-size;
+      }
+    }
+
    .center {
       margin: variables.$margin;
 
