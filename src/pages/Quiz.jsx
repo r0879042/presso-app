@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
-import { Button, Form, Card} from 'react-bootstrap';
+import { Button, Row, Col, Container} from 'react-bootstrap';
 import '../styles/Quiz.scss';
+import gif from '../assets/images/coffee.gif'
 
 const Quiz = () => {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [currentSession, setCurrentSession] = useState('');
   // Get the correct backend url
   const backendURL = import.meta.env.VITE_BACKEND_API_URL;
@@ -27,7 +28,7 @@ const Quiz = () => {
       })
       .then(data => {
         setCurrentSession(data);
-        setAnswer(data, currentQuestionId, selectedOption);
+        setAnswer(data, questions[currentQuestionId].id, selectedOption);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -85,15 +86,16 @@ const Quiz = () => {
 
   const nextQuestion = () => {
     if(currentQuestionId < questions.length - 1){
-        if(currentSession == ''){
-          getSessionAndSetAnswer();
-        }
-        else{
-          setAnswer(currentSession, currentQuestionId, selectedOption);
-        }
-        setCurrentQuestionId(currentQuestionId + 1);
+      if(currentSession == ''){
+        getSessionAndSetAnswer();
+      }
+      else{
+        setAnswer(currentSession, questions[currentQuestionId].id, selectedOption);
+      }
+      setCurrentQuestionId(currentQuestionId + 1);
     }
     else{
+      setAnswer(currentSession, questions[currentQuestionId].id, selectedOption);
       navigate('/recommendations/' + currentSession);
     }
   };
@@ -105,38 +107,32 @@ const Quiz = () => {
         {currentQuestionId + 1} / {questions.length}
       </div>
       <div className="center">
-        <Card className="question">
-          <Card.Body>
-            <Card.Text>
-              {questions[currentQuestionId] && questions[currentQuestionId].question}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-
-        <Form className="form">
-          {questions[currentQuestionId] && questions[currentQuestionId].answers.map((option, index) => (
-            <Form.Check 
-              type="radio"
-              key={index}
-              name="answer"
-              id={`option-${index}`}
-              label={option.answer}
-              value={option.answer}
-              checked={selectedOption === option.id}
-              onChange={() => setSelectedOption(option.id)}
-              className="answer"
-            />
-          ))}
-        </Form>
-
-        <Button 
-          variant="success" 
-          className="next action-button" 
-          disabled={!selectedOption} 
-          onClick={nextQuestion}
-        >
-          Next
-        </Button>
+        <Container className="center">
+          <h2 className="question">{questions[currentQuestionId] && questions[currentQuestionId].question}</h2>
+          <div className="gif-container mb-3 text-center">
+            <img src={gif} alt="coffee gif" className="img-fluid gif" />
+          </div>
+          <Row>
+            {questions[currentQuestionId] && questions[currentQuestionId].answers.map((option, index) => (
+              <Col xs={12} key={index}>
+                <Button
+                className={`option-button ${selectedOption === option.id ? 'selected' : ''}`}
+                onClick={() => setSelectedOption(option.id)}
+                >
+                  {option.answer}
+                </Button>
+              </Col>
+            ))}
+          </Row>
+         <Button 
+            variant="success" 
+            className="action-button" 
+            disabled={!selectedOption} 
+            onClick={nextQuestion}
+          >
+            Next
+          </Button>
+        </Container>
       </div>
     </div>
   );

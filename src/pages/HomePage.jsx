@@ -10,7 +10,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [numberOfquestions, setNumberOfquestions] = useState(5);
   const backendURL = import.meta.env.VITE_BACKEND_API_URL;
-  
+
   useEffect(() => {
     getQuestions();
   }, []);
@@ -37,7 +37,7 @@ const HomePage = () => {
         <Container className="coffee-options my-4 center">
             <Row className="menu g-4">
                 <Col className="menuItem" md={4}>
-                    <Card className="option-card shadow-sm" onClick={() => navigate('/quiz')}>
+                    <Card className="option-card shadow-sm" onClick={() => navigate('/quizinfo')}>
                         <Card.Body>
                             <Card.Title className="option-title">Coffee quiz</Card.Title>
                             <Card.Text className="option-text">This {numberOfquestions} question quiz will craft your ideal cup of coffee to try</Card.Text>

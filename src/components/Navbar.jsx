@@ -21,7 +21,7 @@ const Navbar = () => {
         <img src={findIcon} alt="Find" className='nav-icon'/>
         <span>Find</span>
       </div>
-      <div className={`nav-item ${currentPath === '/quiz' ? 'active' : ''}`} onClick={() => navigate('/quiz')}>
+      <div className={`nav-item ${currentPath === '/quizinfo' || currentPath === '/quiz' ? 'active' : ''}`} onClick={() => navigate('/quizinfo')}>
         <img src={quizIcon} alt="Quiz" className='nav-icon' />
         <span>Quiz</span>
       </div>

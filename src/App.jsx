@@ -7,6 +7,7 @@ import Cart from './pages/Cart';
 import PaymentSuccess from './pages/PaymentSuccess';
 import TastingPage from './pages/TastingPage';
 import SessionCode from './pages/SessionCode';
+import QuizInfo from './pages/QuizInfo';
 import Quiz from './pages/Quiz';
 import HomePage from './pages/HomePage';
 import Recommendations from './pages/Recommendations';
@@ -52,6 +53,7 @@ function App() {
       <Route path="/payment-success" element={<PaymentSuccess setCart={setCart} />} />
       <Route path="/tastingpage" element={<TastingPage />} />
       <Route path="/sessioncode" element={<SessionCode setCart={setCart} />} />
+      <Route path="/quizinfo" element={<QuizInfo />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/recommendations/:sessionCode" element={<Recommendations setCart={setCart} />} />
       <Route path="/receipt" element={<Receipt />} />

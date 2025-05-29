@@ -1,0 +1,31 @@
+@use "./variables";
+@use "./mixins";
+
+.coffee-quiz {
+    .quiz-title {
+        font-size: variables.$small-title-size;
+        padding: 5px;
+        text-align: center;
+
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$medium-title-size;
+        }
+    }
+
+    .quiz-description {
+        font-size: variables.$small-text-size;
+        padding: 5px;
+        text-align: center;
+
+        @include mixins.respond-to('tablet') {
+          font-size: variables.$medium-text-size;
+        }
+    }
+
+    .quiz-image {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+}
