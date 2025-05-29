@@ -2,14 +2,16 @@ import React, { useEffect ,useState } from "react";
 import "../styles/Vertuo.scss";
 import {Link, useNavigate } from "react-router-dom";
 import SearchBar from '../components/SearchBar';
+import Navbar from "../components/Navbar";
 import "../styles/responsive.scss";
 import { transformCapsules } from '../others/transformCapsules';
 
-function Vertuo() {
+const Vertuo = ({addToCart}) => {
   const navigate = useNavigate();
   const [capsules, setCapsules] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("Vertuo");
+  const [addedCapsuleIds, setAddedCapsuleIds] = useState(new Set()); // Track added capsules
   const backendURL = import.meta.env.VITE_BACKEND_API_URL;
 
   useEffect(() => {
@@ -22,6 +24,11 @@ function Vertuo() {
       })
       .catch(err => console.error("Failed to fetch capsules", err));
   }, []);
+
+  const handleAddToCart = (capsule) => {
+    addToCart(capsule);
+    setAddedCapsuleIds(prev => new Set(prev).add(capsule.id || capsule.name));
+  };
 
   const filteredCapsules = capsules.filter(
     (capsule) =>
@@ -52,31 +59,33 @@ function Vertuo() {
       
 
       {/* Our new SearchBar component */}
-      <SearchBar data={capsules} onSelect={(item) => setSelected(item)} />
+      <SearchBar data={capsules} onSelect={(item) => setSearchTerm(item.name)} />
 
 
       <h4 className="section-title">Mug(230 ml)</h4>
 
       <div className="capsule-grid">
         {filteredCapsules.map((capsule, idx) => (
-
-          
-        <Link
-          to="/flavour"
-          state={{ capsule, from: '/vertuo' }} 
-          key={idx}
-          className="capsule-card"
-        >
-          
-          <img src={`/capsules/${capsule.image}`} alt={capsule.name} />
+          <div className="capsule-card" key={idx}>
+          <img
+            src={`/capsules/${capsule.image}`}
+            alt={capsule.name}
+            onClick={() => navigate("/flavour", { state: { capsule, from: "/vertuo" } })}
+            style={{ cursor: "pointer" }}
+          />
           <p>{capsule.name}</p>
-          
-        </Link>
-          
+          <button
+              className="add-btn"
+              onClick={() => handleAddToCart(capsule)}
+              disabled={addedCapsuleIds.has(capsule.id)}
+            >
+              {addedCapsuleIds.has(capsule.id) ? "✅ Added" : "➕ Add"}
+            </button>
+          </div>
         ))}
       </div>
 
-      
+      <Navbar />      
     </div>
   );
 }

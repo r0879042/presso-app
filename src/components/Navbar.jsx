@@ -13,7 +13,7 @@ const Navbar = () => {
   
   return (
     <div className="navbar">
-      <div className={`nav-item ${currentPath === '/' ? 'active' : ''}`} onClick={() => navigate('/')}>
+      <div className={`nav-item ${currentPath === '/home' ? 'active' : ''}`} onClick={() => navigate('/home')}>
         <img src={homeIcon} alt="Home" className='nav-icon' />
         <span>Home</span>
       </div>
