@@ -57,8 +57,6 @@ const Vertuo = ({addToCart}) => {
       </div>
 
       
-
-      {/* Our new SearchBar component */}
       <SearchBar data={capsules} onSelect={(item) => setSearchTerm(item.name)} />
 
 
