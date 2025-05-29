@@ -47,6 +47,10 @@ npm install
 # To run in dev mode
 npm run dev
 
+# To run in production or online 
+[Presso app](https://presso-app-gilt.vercel.app/)
+
+
 ## Backend
 
 # Clone the repo
