@@ -11,6 +11,7 @@ import Quiz from './pages/Quiz';
 import HomePage from './pages/HomePage';
 import Recommendations from './pages/Recommendations';
 import Receipt from './pages/Receipt';
+import Welcome from './pages/Welcome';
 
 
 
@@ -44,9 +45,10 @@ function App() {
   // ⬇️ YOUR return should be inside here
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/find" element={<Find />} />
-      <Route path="/vertuo" element={<Vertuo />} />
+      <Route path="/" element={<Welcome />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/find" element={<Find addToCart={addToCart} />} />
+      <Route path="/vertuo" element={<Vertuo addToCart={addToCart} />} />
       <Route path="/flavour" element={<Flavour addToCart={addToCart} />} />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
       <Route path="/payment-success" element={<PaymentSuccess setCart={setCart} />} />
@@ -55,6 +57,7 @@ function App() {
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/recommendations/:sessionCode" element={<Recommendations setCart={setCart} />} />
       <Route path="/receipt" element={<Receipt />} />
+      
     </Routes>
   );
 }

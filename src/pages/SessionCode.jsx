@@ -24,8 +24,7 @@ const SessionCode = ({ setCart }) => {
         })
         .then(data => {
           if (data.code === code) {
-            getRecommendations();
-            navigate('/cart'); 
+            navigate(`/recommendations/${code}?from=session`); 
           }
           else{
             setShowToast(true)

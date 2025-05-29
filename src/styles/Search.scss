@@ -1,3 +1,5 @@
+@import "../styles/responsive.scss";
+
 .search-bar-container{
     width: 100%;
     display: flex;
@@ -32,22 +34,25 @@
     width: 100%;
     font-size: 1rem;
     padding-left: 10px;
+    margin-left: 10px;
     box-shadow: none;
 }
-
 .suggestions-list {
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 98%;
+    width: 90%;
     max-width: 400px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 8px 0;
     position: absolute;
+    top: 100%;       // 👈 Place directly below the search bar
+    left: 50%;
+    transform: translateX(-50%); // 👈 Center horizontally
+    z-index: 10;     // 👈 Ensure it appears above other elements
 
-
-    li{
+    li {
         padding: 10px 16px;
         font-size: 0.95rem;
         font-family: 'Georgia', serif;
@@ -55,7 +60,25 @@
         transition: background-color 0.2s ease;
 
         &:hover {
-            background-color: #f0f0f0;
+        background-color: #f0f0f0;
         }
     }
+}
+
+@include respond-to-tablet-landscape {
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        box-shadow: #f0f0f0;
+        border-radius: 5px;
+        padding: 8px 10px;
+        width: 90%;
+        max-width: 700px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+    .suggestions-list {
+        max-width: 600px;
+      }
 }
