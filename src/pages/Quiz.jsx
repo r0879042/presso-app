@@ -157,7 +157,7 @@ const Quiz = () => {
                             className="option-image"
                           />
                           <div className="option-text">
-                            <p>{option.answer}</p>
+                            <p className="option-title">{option.answer}</p>
                             {option.description && <p>{option.description}</p>}
                           </div>
                         </div>
@@ -200,7 +200,7 @@ const Quiz = () => {
                         />
                         <div className="option-text">
                           <p className="option-title">{option.answer}</p>
-                          {option.description && <p>{option.description}</p>}
+                          {option.description && <p className="description">{option.description}</p>}
                         </div>
                       </div>
                     </Col>
