@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Previous from '../components/Previous';
 import { Button, Row, Col, Container} from 'react-bootstrap';
 import '../styles/Quiz.scss';
-import gif from '../assets/images/coffee.gif'
+import answer1 from '../assets/images/answer1.jpg'
+import answer2 from '../assets/images/answer2.jpg'
+import answer3 from '../assets/images/answer3.jpg'
 
 const Quiz = () => {
   const navigate = useNavigate();
+  const [pics, setPics] = useState([answer1, answer2, answer3, answer1]);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -103,35 +106,54 @@ const Quiz = () => {
   return  (
     <div className="quiz">
       <Previous onClick={() => previousQuestion()} />
-      <div className="question-counter p-3">
-        {currentQuestionId + 1} / {questions.length}
-      </div>
       <div className="center">
         <Container className="center">
           <h2 className="question">{questions[currentQuestionId] && questions[currentQuestionId].question}</h2>
-          <div className="gif-container mb-3 text-center">
-            <img src={gif} alt="coffee gif" className="img-fluid gif" />
-          </div>
-          <Row>
+          <Row className="justify-content-center flex-wrap">
             {questions[currentQuestionId] && questions[currentQuestionId].answers.map((option, index) => (
-              <Col xs={12} key={index}>
-                <Button
-                className={`option-button ${selectedOption === option.id ? 'selected' : ''}`}
-                onClick={() => setSelectedOption(option.id)}
-                >
-                  {option.answer}
-                </Button>
+              <Col xs={12 / questions[currentQuestionId].length} key={index} className="d-flex justify-content-center">
+                <div
+                    className={`option-card ${selectedOption === option.id ? 'selected' : ''}`}
+                    onClick={() => setSelectedOption(option.id)}
+                  >
+                  <img
+                    src={pics[index]}
+                    alt={option.answer}
+                    className="option-image"
+                  />
+                  <div className="option-text">
+                    <p>{option.answer}</p>
+                    {option.description && <p>{option.description}</p>}
+                  </div>
+                </div>
               </Col>
             ))}
           </Row>
-         <Button 
+          <div className="progress-tracker my-4">
+            {questions.map((_, index) => (
+              <div
+                key={index}
+                className={`tracker-step ${index === currentQuestionId ? 'active' : ''} ${index < currentQuestionId ? 'completed' : ''}`}
+                      onClick={() => {
+                if (index < currentQuestionId) {
+                    setCurrentQuestionId(index);
+                  }
+                }}
+                style={{ cursor: index < currentQuestionId ? 'pointer' : 'default' }}
+              >
+                <span className="tracker-number">{index + 1}</span>
+                {index < questions.length - 1 && <span className="tracker-line" style={{ width: `calc(60vw / ${questions.length})` }}></span>}
+              </div>
+            ))}
+          </div>
+          <Button 
             variant="success" 
             className="action-button" 
             disabled={!selectedOption} 
             onClick={nextQuestion}
           >
-            Next
-          </Button>
+                Next
+          </Button>  
         </Container>
       </div>
     </div>
