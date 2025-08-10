@@ -41,6 +41,15 @@
         }
       }
 
+      .answers{
+        background-color: rgb(250, 249, 248);
+        height: 60vh;
+
+        @media (orientation: landscape) {
+          width: 60vw;
+        }
+      }
+
       .option-button {
         width: 100%;
         background-color: variables.$secondary-color;
@@ -78,23 +87,33 @@
           text-align: center;
 
           .option-image {
-            height: 20vh;
-            width: 20vh;
-            border-radius: variables.$border-radius;
+            height: 10vh;
+            width: 10vh;
+            border: 2px solid variables.$accent-color;
+            border-radius: 50%;
+
+            @media (orientation: landscape) {
+               @include mixins.respond-to('phone') {
+                height: 20vh;
+                width: 20vh;
+              }
+            }
           }
 
           .option-text {
             font-size: variables.$small-text-size;
             margin: math.div(variables.$margin, 2);
 
-            @include mixins.respond-to('phone') {
-              font-size: variables.$medium-text-size;
-              margin: variables.$margin;
-            }
+            .option-title {
+              @include mixins.respond-to('phone') {
+                font-size: variables.$medium-text-size;
+                margin: variables.$margin;
+              }
 
-            @include mixins.respond-to('tablet') {
-              font-size: variables.$medium-text-size;
-              margin: variables.$margin;
+              @include mixins.respond-to('tablet') {
+                font-size: variables.$medium-text-size;
+                margin: variables.$margin;
+              }
             }
           }
       }
@@ -126,8 +145,8 @@
         width: 26px;
         height: 26px;
         border-radius: 50%;
-        background-color: #fff;
-        border: 2px solid variables.$primary-color;
+        background-color: variables.$secondary-color;
+        border: 1px solid variables.$accent-color;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -138,29 +157,27 @@
           width: 32px;
           height: 32px;
           font-size: variables.$medium-text-size;
-          padding: math.div(variables.$margin, 2);;
-        }
-
-        @include mixins.respond-to('tablet') {
-          font-size: variables.$big-text-size;
-          padding: variables.$margin;
+          padding: math.div(variables.$margin, 2);
         }
       }
 
       &.active .tracker-number {
-        background-color: variables.$primary-color;
+        background-color: variables.$accent-color;
+        border-color: variables.$accent-color;
         color: #fff;
       }
 
       &.completed .tracker-number {
         background-color: variables.$secondary-color;
-        border-color: variables.$secondary-color;
+        border-width: 2px;
+        border-color: variables.$accent-color;
         color: #000;
       }
 
       .tracker-line {
-        height: 2px;
-        background-color: variables.$primary-color;
+        //height: 1px;
+        //background-color: variables.$accent-color;
+        border-top: 5px dotted variables.$accent-color;
 
         @include mixins.respond-to('phone') {
           margin: 0 6px;
@@ -170,5 +187,77 @@
           margin: 0 15px;
         }
       }
-    }
+
+      &.completed .tracker-line {
+             border: 2px solid variables.$accent-color;
+      }
+    }    
+}
+
+.question-wrapper {
+  position: relative;
+  height: 50vh;
+  overflow: hidden;
+}
+
+// Slide left (for next)
+.slide-enter-next {
+  animation: slideInFromRight 300ms forwards;
+}
+
+.slide-exit-next {
+  animation: slideOutToLeft 300ms forwards;
+}
+
+// Slide right (for prev)
+.slide-enter-prev {
+  animation: slideInFromLeft 300ms forwards;
+}
+
+.slide-exit-prev {
+  animation: slideOutToRight 300ms forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
