@@ -36,11 +36,14 @@
 
         @include mixins.respond-to('phone') {
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
         }
             
         .menuItem{
             width: 90%;
+            @include mixins.respond-to('phone') {
+                margin-top: 0px;
+            }       
 
             .option-card {
                 background-color: variables.$secondary-color;
@@ -54,10 +57,6 @@
 
                 @include mixins.respond-to('phone') {
                     padding: 20px;
-                }
-
-                @include mixins.respond-to('tablet') {
-                    padding: 30px 20px;
                 }
 
                 &:hover {

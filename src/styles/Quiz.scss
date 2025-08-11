@@ -3,34 +3,7 @@
 @use 'sass:math';
 
   .quiz{
-    .question-counter {
-      position: absolute;
-      top: 0;
-      right: 1rem;
-      font-size: variables.$small-text-size;
-
-      @include mixins.respond-to('phone') {
-        font-size: variables.$medium-text-size;
-      }
-
-      @include mixins.respond-to('tablet') {
-        font-size: variables.$big-text-size;
-      }
-    }
-
    .center {
-      .gif {
-        max-width: 100px;
-        height: auto;
-        display: inline-block;
-      }
-
-      @include mixins.respond-to('phone') {
-        .gif {
-          max-width: 250px;
-        }
-      }
-
       .question {
         font-size: variables.$small-title-size;
         padding: 5px;
@@ -41,48 +14,182 @@
         }
       }
 
-      .option-button {
-        width: 100%;
-        background-color: variables.$secondary-color;
-        border: none;
-        color: #000;
-        padding: 0.75rem;
-        border-radius: variables.$border-radius;
-        font-size: variables.$small-text-size;
-        margin: math.div(variables.$margin, 2);
+      .answers{
+        background-color: rgb(250, 249, 248);
 
-        &:focus,
-        &:active,
-        &.focus,
-        &:focus-visible {
-          background-color: variables.$secondary-color;
-        }
-
-        &.selected {
-          border: 1px solid #000;
-        }
-
-        @include mixins.respond-to('phone') {
-          font-size: variables.$medium-text-size;
-          margin: variables.$margin;
-        }
-
-        @include mixins.respond-to('tablet') {
-          font-size: variables.$big-text-size;
-          margin: variables.$margin;
+        @media (orientation: landscape) {
+          width: 60vw;
         }
       }
+      
+      .option-card {
+          margin: variables.$margin;
+          text-align: center;
 
-      .action-button {
-        margin-top: math.div(variables.$margin, 2);
-        width: 45%;
-        &:disabled:not(.selected) {
-          opacity: 0.6;
-        }
+          .option-image {
+            height: 10vh;
+            width: 10vh;
+            border: 2px solid variables.$accent-color;
+            border-radius: 50%;
 
-        @include mixins.respond-to('tablet') {
-          width: 30%;
-        }
+            @media (orientation: landscape) {
+               @include mixins.respond-to('phone') {
+                height: 20vh;
+                width: 20vh;
+              }
+            }
+          }
+
+          .option-text {
+            font-size: variables.$small-text-size;
+            margin: math.div(variables.$margin, 2);
+
+            .option-title {
+              @include mixins.respond-to('phone') {
+                font-size: variables.$medium-text-size;
+                margin: variables.$margin;
+              }
+
+              @include mixins.respond-to('tablet') {
+                font-size: variables.$medium-text-size;
+                margin: variables.$margin;
+              }
+            }
+
+            .description {
+              color: dimgrey;
+            }
+          }
       }
     }
+
+    .progress-tracker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .tracker-step {
+        display: flex;
+        align-items: center;
+
+        .tracker-number {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background-color: variables.$secondary-color;
+          border: 1px solid variables.$accent-color;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: variables.$small-text-size;
+          transition: all 0.2s ease;
+
+          @include mixins.respond-to('phone') {
+            width: 32px;
+            height: 32px;
+            font-size: variables.$medium-text-size;
+            padding: math.div(variables.$margin, 2);
+          }
+        }
+
+        &.active .tracker-number {
+          background-color: variables.$accent-color;
+          border-color: variables.$accent-color;
+          color: #fff;
+        }
+
+        &.completed .tracker-number {
+          background-color: variables.$secondary-color;
+          border-width: 2px;
+          border-color: variables.$accent-color;
+          color: #000;
+        }
+
+        .tracker-line {
+          //height: 1px;
+          //background-color: variables.$accent-color;
+          border-top: 5px dotted variables.$accent-color;
+
+          @include mixins.respond-to('phone') {
+            margin: 0 6px;
+          }
+
+          @include mixins.respond-to('tablet') {
+            margin: 0 15px;
+          }
+        }
+
+        &.completed .tracker-line {
+              border: 2px solid variables.$accent-color;
+        }
+      }    
   }
+
+  .question-wrapper {
+    position: relative;
+    height: 50vh;
+    overflow: hidden;
+  }
+
+  // Slide left (for next)
+  .slide-enter-next {
+    animation: slideInFromRight 300ms forwards;
+  }
+
+  .slide-exit-next {
+    animation: slideOutToLeft 300ms forwards;
+  }
+
+  // Slide right (for prev)
+  .slide-enter-prev {
+    animation: slideInFromLeft 300ms forwards;
+  }
+
+  .slide-exit-prev {
+    animation: slideOutToRight 300ms forwards;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutToLeft {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutToRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+}
