@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Previous from "../components/Previous";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 import "../styles/Quiz.scss";
 
 const Quiz = () => {
@@ -143,18 +143,22 @@ const Quiz = () => {
                   {questions[prevId] &&
                     questions[prevId].answers.map((option, index) => (
                       <Col
-                        xs={12 / questions[prevId].answers.length}
+                        xs={questions[prevId].answers.length < 5 ? 12 / questions[prevId].answers.length : 2}
                         key={index}
                         className="d-flex justify-content-center"
                       >
                         <div
                           className={`option-card`}
-                          onClick={() => nextQuestion(option.id)}
                         >
                           <img
                             src={`/answers/${option.image}`}
                             alt={option.answer}
                             className="option-image"
+                            style={{
+                              height: questions[prevId].answers.length < 5 ? "22vh" : "15vh",
+                              width: prevId == 1 ? "auto" : (questions[prevId].answers.length < 5 ? "22vh" : "15vh"),
+                              borderRadius: prevId == 1 ? "20px" : "50%",
+                            }}
                           />
                           <div className="option-text">
                             <p className="option-title">{option.answer}</p>
@@ -164,6 +168,11 @@ const Quiz = () => {
                       </Col>
                     ))}
                 </Row>
+                {prevId == 3 ? (
+                  <Button className="action-button none-btn" variant="default">
+                    Not sure
+                  </Button>
+              ) : (<div></div>)}
               </div>
             )}
             <div
@@ -185,7 +194,7 @@ const Quiz = () => {
                 {questions[currentQuestionId] &&
                   questions[currentQuestionId].answers.map((option, index) => (
                     <Col
-                      xs={12 / questions[currentQuestionId].answers.length}
+                      xs={questions[currentQuestionId].answers.length < 5 ? 12 / questions[currentQuestionId].answers.length : 2}
                       key={index}
                       className="d-flex justify-content-center"
                     >
@@ -197,6 +206,11 @@ const Quiz = () => {
                           src={`/answers/${option.image}`}
                           alt={option.answer}
                           className="option-image"
+                          style={{
+                            height: questions[currentQuestionId].answers.length < 5 ? "22vh" : "15vh",
+                            width: currentQuestionId == 1 ? "auto" : (questions[currentQuestionId].answers.length < 5 ? "22vh" : "15vh"),
+                            borderRadius: currentQuestionId == 1 ? "20px" : "50%",
+                          }}
                         />
                         <div className="option-text">
                           <p className="option-title">{option.answer}</p>
@@ -206,6 +220,11 @@ const Quiz = () => {
                     </Col>
                   ))}
               </Row>
+              {currentQuestionId == 3 ? (
+                <Button className="action-button none-btn" variant="default" onClick={() => nextQuestion("")}>
+                  Not sure
+                </Button>
+              ) : (<div></div>)}
             </div>
           </div>
           <div className="progress-tracker my-5">

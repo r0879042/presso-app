@@ -1,14 +1,10 @@
 .find-product-page {
   background-color: #f2eee9;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   padding-top: 80px;
   padding-bottom: 80px;
-  
-
-
 
   .top-toggle {
     display: flex;
@@ -66,18 +62,30 @@
     margin-bottom: 1rem;
   }
 
+  .find-product-page > *:not(.navbar) {
+  padding-bottom: 20px; 
+}
+
   .capsule-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    padding-bottom: 90px;
+
+    @media (orientation: landscape) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 
     .capsule-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
       background: white;
       border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
+      padding: 1rem 1.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       font-size: 0.85rem;
+      text-align: center;
       text-decoration: none;
       color: black;
 
@@ -90,10 +98,7 @@
   }
 
   .capsule-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -103,23 +108,35 @@
       max-height: 140px;
       object-fit: contain;
     }
+
+    .capsule-name {
+      font-size: 1.6rem;
+    }
+
+    .capsule-price {
+      color: #198754;
+      font-size: 1.6rem;
+      margin-top: 1.6rem;
+      font-weight: bold;
+    }
   
     p {
-      margin: 0.8rem 0;
-      font-weight: 500;
-      text-align: center;
+      font-family: 'Playfair Display';
+      font-size: 1.4rem;
+      margin-bottom: 0;
     }
   
     .add-btn {
       margin-top: auto;
-      background-color: #28a745;
+      margin: 0.8rem 0;
+      background-color: #198754;
       border: none;
       padding: 0.4rem;
       color: white;
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      width: 100%;
+      width: 60%;
   
       &:hover {
         background-color: #218838;
@@ -127,11 +144,28 @@
     }
   }
 
-}
+  .roast-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px 0;
+  }
 
+  .roast-dots {
+    display: flex;
+    gap: 4px;
+  }
 
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    background-color: transparent;
+  }
 
-.find-product-page > *:not(.navbar) {
-  
-  padding-bottom: 20px; 
+  .dot.filled {
+    background-color: #555; /* adjust color if needed */
+  }
 }
