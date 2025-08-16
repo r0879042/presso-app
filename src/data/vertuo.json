@@ -2,31 +2,31 @@
   {
     "name": "Vienna Lungo",
     "type": "Vertuo",
-    "image": "vienna-lungo.jpg"
+    "image": "vienna-lungo.png"
   },
   {
     "name": "Stockholm Lungo",
     "type": "Vertuo",
-    "image": "stockholm-lungo.jpg"
+    "image": "stockholm-lungo.png"
   },
   {
     "name": "Cape Town Lungo",
     "type": "Vertuo",
-    "image": "capetown-lungo.jpg"
+    "image": "capetown-lungo.png"
   },
   {
     "name": "Shanghai Lungo",
     "type": "Vertuo",
-    "image": "shanghai-lungo.jpg"
+    "image": "shanghai-lungo.png"
   },
   {
     "name": "Tokyo Lungo",
     "type": "Vertuo",
-    "image": "tokyo-lungo.jpg"
+    "image": "tokyo-lungo.png"
   },
   {
     "name": "Paris Espresso",
     "type": "Vertuo",
-    "image": "paris-espresso.jpg"
+    "image": "paris-espresso.png"
   }
 ]

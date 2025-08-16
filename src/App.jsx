@@ -47,8 +47,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Welcome />} />
       <Route path="/home" element={<HomePage />} />
-      <Route path="/find" element={<Find addToCart={addToCart} />} />
-      <Route path="/vertuo" element={<Vertuo addToCart={addToCart} />} />
+      <Route path="/find" element={<Find addToCart={addToCart} setCart={setCart}  cart={cart} />} />
+      <Route path="/vertuo" element={<Vertuo addToCart={addToCart} setCart={setCart}  cart={cart} />} />
       <Route path="/flavour" element={<Flavour addToCart={addToCart} />} />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
       <Route path="/payment-success" element={<PaymentSuccess setCart={setCart} />} />

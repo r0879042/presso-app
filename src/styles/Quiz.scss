@@ -5,25 +5,19 @@
   .quiz{
    .center {
       .question {
-        font-size: variables.$small-title-size;
+        font-size: variables.$big-text-size;
         padding: 5px;
         text-align: center;
-
-        @include mixins.respond-to('tablet') {
-          font-size: variables.$medium-title-size;
-        }
       }
 
       .answers{
-        background-color: rgb(250, 249, 248);
-
         @media (orientation: landscape) {
-          width: 60vw;
+          width: 72vw;
         }
       }
       
       .option-card {
-          margin: variables.$margin;
+          margin-top: variables.$margin;
           text-align: center;
 
           .option-image {
@@ -31,13 +25,6 @@
             width: 10vh;
             border: 2px solid variables.$accent-color;
             border-radius: 50%;
-
-            @media (orientation: landscape) {
-               @include mixins.respond-to('phone') {
-                height: 20vh;
-                width: 20vh;
-              }
-            }
           }
 
           .option-text {
@@ -47,13 +34,10 @@
             .option-title {
               @include mixins.respond-to('phone') {
                 font-size: variables.$medium-text-size;
-                margin: variables.$margin;
+                margin-top: variables.$margin;
+                margin-bottom: 0px;
               }
 
-              @include mixins.respond-to('tablet') {
-                font-size: variables.$medium-text-size;
-                margin: variables.$margin;
-              }
             }
 
             .description {
@@ -73,9 +57,11 @@
         align-items: center;
 
         .tracker-number {
+          font-family: 'Courier New', Courier, monospace;
           width: 26px;
           height: 26px;
           border-radius: 50%;
+          color: variables.$primary-color;
           background-color: variables.$secondary-color;
           border: 1px solid variables.$accent-color;
           display: flex;
@@ -101,13 +87,10 @@
         &.completed .tracker-number {
           background-color: variables.$secondary-color;
           border-width: 2px;
-          border-color: variables.$accent-color;
-          color: #000;
+          color: variables.$accent-color;
         }
 
         .tracker-line {
-          //height: 1px;
-          //background-color: variables.$accent-color;
           border-top: 5px dotted variables.$accent-color;
 
           @include mixins.respond-to('phone') {
@@ -131,22 +114,26 @@
     overflow: hidden;
   }
 
+  .slide {
+    text-align: center;
+  }
+
   // Slide left (for next)
   .slide-enter-next {
-    animation: slideInFromRight 300ms forwards;
+    animation: slideInFromRight 1000ms forwards;
   }
 
   .slide-exit-next {
-    animation: slideOutToLeft 300ms forwards;
+    animation: slideOutToLeft 1000ms forwards;
   }
 
   // Slide right (for prev)
   .slide-enter-prev {
-    animation: slideInFromLeft 300ms forwards;
+    animation: slideInFromLeft 1000ms forwards;
   }
 
   .slide-exit-prev {
-    animation: slideOutToRight 300ms forwards;
+    animation: slideOutToRight 1000ms forwards;
   }
 
   @keyframes slideInFromRight {
@@ -190,6 +177,19 @@
     to {
       transform: translateX(100%);
       opacity: 0;
+    }
+  }
+
+  .none-btn {
+    border: 1px solid variables.$accent-color;
+    background-color: transparent;
+    color: black;
+    margin-top: 30px;
+    font-family: 'Playfair Display';
+    font-weight: normal;
+
+    &:hover {
+      background-color: variables.$secondary-color;
     }
   }
 }

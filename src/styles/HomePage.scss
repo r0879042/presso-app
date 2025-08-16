@@ -90,19 +90,21 @@
                 }
 
                 .option-image {
-                    width: 120px;
+                    width: 10vw;
                     position: absolute;
                     right: -40px;
                     top: 50%;
                     transform: translateY(-50%);
                     z-index: 0;
+                    min-width: 120px;
+                    max-width: 300px;
 
                     @include mixins.respond-to('phone') {
-                        width: 200px;
+                        width: 20vw;
                     }
 
                     @include mixins.respond-to('tablet') {
-                        width: 300px;
+                        width: 20vw;
                     }
                 }
             }
