@@ -11,6 +11,15 @@ const Recommendations = ({ setCart }) => {
   const [capsules, setCapsules] = useState([]);
   const [searchParams] = useSearchParams();
   const fromSessionCodePage = searchParams.get('from') === 'session';
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
  useEffect(() => {
      getRecommendations(sessionCode);
@@ -51,25 +60,68 @@ const Recommendations = ({ setCart }) => {
     navigate('/cart');
   };
 
+  if (loading) {
+    return (
+      <div className="center bg-white"
+      style={{
+        height: "100vh"
+      }}>
+        <p style={{
+          fontSize: "3rem",
+          marginBottom: "20px"
+        }}>Your coffee is brewing...</p>
+        <video
+          src="/loading.mp4"
+          autoPlay
+          muted
+          playsInline
+          className="w-64 h-64"
+        />
+      </div>
+    );
+  } 
+
   return (
     <div>
       <Container className="recommendation-page center">
-          <div className="title">Recommended flavours to taste</div>
-          {capsules.map((capsule, index) => (
-            <Card key={index} className="flavor-card">
-              <Row className="align-items-center">
-                <Col xs={2} className="image-col">
-                  <img src={`/capsules/${capsule.image}`} alt={capsule.name} className="flavor-image" />
-                </Col>
-                <Col xs={10} className="name-col">
-                  <span className="flavor-name">{capsule.name} - {capsule.type}</span>
-                </Col>
-              </Row>
-            </Card>
-          ))}
+          <div className="title">We think we've found something you'll love...
+                  <img
+                    src={`/beans.png`}
+                    alt="beans"
+                  /></div>
+          <p className="subtitle">For adventurous flavour profiles, and good milk synergy, we have recommended our most naturally sweet, medium roast coffees.</p>
+          <Row>
+            {capsules.map((capsule, index) => (
+              <Col xs={12} md={4}>
+                <div className="capsule-card" key={index}>
+                  <img
+                    src={`/capsules/${capsule.image}`}
+                    alt={capsule.name}
+                    onClick={() =>
+                      navigate("/flavour", { state: { capsule, from: "/find" } })
+                    }
+                    style={{ cursor: "pointer" }}
+                  />
+                  <p className="capsule-name">{capsule.name} - {capsule.type}</p>
+                  <p>{capsule.tastes}</p>
+                  <div className="roast-container">
+                    <p className="roast-label">Roast:</p>
+                    <div className="roast-dots">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <span
+                          key={i}
+                          className={`dot ${i < capsule.roast ? "filled" : ""}`}
+                        />
+                      ))}
+                    </div>
+                  </div>            
+                </div>
+              </Col>
+              ))}
+          </Row>    
           <div className="button-group">
-            <Button variant="success" className="action-button" disabled={fromSessionCodePage} onClick={printReceipt}>Print receipt</Button>
-            <Button variant="success" className="action-button" onClick={goToCart}>Next</Button>
+            <Button variant="success" className="action-button" disabled={fromSessionCodePage} onClick={printReceipt}>Show QR code for tasting</Button>
+            <Button variant="success" className="action-button" onClick={goToCart}>Proceed to cart</Button>
           </div>
       </Container>
     </div>

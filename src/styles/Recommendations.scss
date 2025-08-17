@@ -19,57 +19,48 @@
     @include mixins.respond-to('tablet') {
        font-size: variables.$big-title-size;
     }
+
+    img{
+      height: 60px;
+      width: 60px;
+      margin-left: 10px;
+    }
   }
 
-  .flavor-card {
-    background-color: #ffffff;
-    border: none;
-    margin-bottom: variables.$margin;
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 90%;
+  
+  .subtitle {
+    font-family: 'Playfair Display';
+    font-size: variables.$small-text-size;
+    
+    @include mixins.respond-to('phone') {
+      font-size: 1.8rem;
+    }
+  }
 
-    .name-col{
+  .capsule-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; 
+      align-items: center; 
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       text-align: center;
+      text-decoration: none;
+      color: black;
 
-      .flavor-name {
-        font-size: variables.$small-text-size;
-        font-weight: 500;
-
-        @include mixins.respond-to('phone') {
-          font-size: variables.$medium-text-size;
-        }
-
-        @include mixins.respond-to('tablet') {
-          font-size: variables.$big-text-size;
-        }
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
       }
     }
-
-    .flavor-image {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-
-      
-      @include mixins.respond-to('phone') {
-        width: 100px;
-        height: 100px;
-      }
-
-      @include mixins.respond-to('tablet') {
-        width: 150px;
-        height: 150px;
-      }
-    }
-  }
 
   .button-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: variables.$margin;
+    margin-top: variables.$margin * 2;
     justify-content: center;
     width: 100%;
 
@@ -78,7 +69,59 @@
 
         .action-button {
           flex: 50%;
+          margin: 40px;
         }
     }
+  }
+
+  .capsule-card {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    height: 45vh; 
+  
+    img {
+      max-height: 140px;
+      object-fit: contain;
+    }
+
+    .capsule-name {
+      font-size: 2rem;
+    }
+
+    p {
+      font-family: 'Playfair Display';
+      font-size: 1.3rem;
+      margin-bottom: 0;
+    }
+
+    .roast-label {
+      font-size: 2rem;
+    }
+  }
+
+  .roast-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px 0;
+  }
+
+  .roast-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    background-color: transparent;
+  }
+
+  .dot.filled {
+    background-color: #555; /* adjust color if needed */
   }
 }
