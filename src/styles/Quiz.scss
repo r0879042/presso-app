@@ -8,6 +8,7 @@
         font-size: variables.$big-text-size;
         padding: 5px;
         text-align: center;
+        margin-bottom: 20px;
       }
 
       .answers{
@@ -23,8 +24,14 @@
           .option-image {
             height: 10vh;
             width: 10vh;
-            border: 2px solid variables.$accent-color;
+            border: 1px solid variables.$accent-color;
             border-radius: 50%;
+            transition: filter 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+              filter: brightness(0.6);
+            }
           }
 
           .option-text {
@@ -110,12 +117,19 @@
 
   .question-wrapper {
     position: relative;
-    height: 50vh;
+    height: 65vh;
     overflow: hidden;
   }
 
   .slide {
     text-align: center;
+    position: absolute;
+    inset: 0; 
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;      
+    z-index: 2;
   }
 
   // Slide left (for next)
@@ -182,14 +196,21 @@
 
   .none-btn {
     border: 1px solid variables.$accent-color;
+    color: variables.$primary-color;
     background-color: transparent;
-    color: black;
     margin-top: 30px;
     font-family: 'Playfair Display';
     font-weight: normal;
 
     &:hover {
+      color: variables.$primary-color;
       background-color: variables.$secondary-color;
     }
+  }
+
+  .full-black{
+    font-family: 'Playfair Display';
+    color: variables.$accent-color;
+    font-size: 2rem;
   }
 }

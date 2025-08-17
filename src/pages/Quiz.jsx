@@ -129,13 +129,7 @@ const Quiz = () => {
               <div
                 key={prevId}
                 className={`slide ${animationDirection === "next" ? "slide-exit-next" : "slide-exit-prev"}`}
-                style={{
-                  position: "absolute",
-                  width: "100%",
-                  top: 0,
-                  left: 0,
-                  zIndex: 1,
-                }}
+                style={{ zIndex: 1 }}
                 onAnimationEnd={handleAnimationEnd}
               >
                 <h2>{questions[prevId].question}</h2>
@@ -143,7 +137,8 @@ const Quiz = () => {
                   {questions[prevId] &&
                     questions[prevId].answers.map((option, index) => (
                       <Col
-                        xs={questions[prevId].answers.length < 5 ? 12 / questions[prevId].answers.length : 2}
+                        xs={12}
+                        md={questions[prevId].answers.length < 5 ? 12 / questions[prevId].answers.length : prevId == 4 ? 4 : 2}
                         key={index}
                         className="d-flex justify-content-center"
                       >
@@ -155,9 +150,10 @@ const Quiz = () => {
                             alt={option.answer}
                             className="option-image"
                             style={{
-                              height: questions[prevId].answers.length < 5 ? "22vh" : "15vh",
-                              width: prevId == 1 ? "auto" : (questions[prevId].answers.length < 5 ? "22vh" : "15vh"),
+                              height: questions[prevId].answers.length < 5 ? "22vh" : prevId == 3 || prevId == 5 ? "17vh" : "20vh",
+                              width: prevId == 1 ? "auto" : (questions[prevId].answers.length < 5 ? "22vh" : prevId == 3 || prevId == 5 ? "17vh" : "20vh"),
                               borderRadius: prevId == 1 ? "20px" : "50%",
+                              border: prevId == 5 ? "none" : "1px solid #977765",
                             }}
                           />
                           <div className="option-text">
@@ -169,22 +165,26 @@ const Quiz = () => {
                     ))}
                 </Row>
                 {prevId == 3 ? (
-                  <Button className="action-button none-btn" variant="default">
-                    Not sure
-                  </Button>
-              ) : (<div></div>)}
+                  <div>
+                    <Button className="action-button none-btn mb-3" variant="default">
+                      Not sure
+                    </Button>
+                    <p className="full-black">(don't worry, we'll make a pick based on your other responses)</p>
+                  </div>
+              ) : prevId == 5 ? 
+                <div>
+                    <Button className="action-button none-btn mb-3" variant="default">
+                      Skip it
+                    </Button>
+                    <p className="full-black">I want it full black</p>
+                </div>
+              : (<div></div>)}
               </div>
             )}
             <div
               key={currentQuestionId}
               className={`slide ${animating ? (animationDirection === "next" ? "slide-enter-next" : "slide-enter-prev") : ""}`}
-              style={{
-                position: "absolute",
-                width: "100%",
-                top: 0,
-                left: 0,
-                zIndex: 2,
-              }}
+              style={{ zIndex: 1 }}
             >
               <h2 className="question">
                 {questions[currentQuestionId] &&
@@ -194,7 +194,8 @@ const Quiz = () => {
                 {questions[currentQuestionId] &&
                   questions[currentQuestionId].answers.map((option, index) => (
                     <Col
-                      xs={questions[currentQuestionId].answers.length < 5 ? 12 / questions[currentQuestionId].answers.length : 2}
+                      xs={12}
+                      md={questions[currentQuestionId].answers.length < 5 ? 12 / questions[currentQuestionId].answers.length : currentQuestionId == 4 ? 4 : 2}
                       key={index}
                       className="d-flex justify-content-center"
                     >
@@ -207,9 +208,11 @@ const Quiz = () => {
                           alt={option.answer}
                           className="option-image"
                           style={{
-                            height: questions[currentQuestionId].answers.length < 5 ? "22vh" : "15vh",
-                            width: currentQuestionId == 1 ? "auto" : (questions[currentQuestionId].answers.length < 5 ? "22vh" : "15vh"),
+                            height: questions[currentQuestionId].answers.length < 5 ? "22vh" : currentQuestionId == 3 || currentQuestionId == 5 ? "17vh" : "20vh",
+                            width: currentQuestionId == 1 ? "auto" : (questions[currentQuestionId].answers.length < 5 ? "22vh" : currentQuestionId == 3 || currentQuestionId == 5 ? "17vh" : "20vh"),
                             borderRadius: currentQuestionId == 1 ? "20px" : "50%",
+                            border: currentQuestionId == 5 ? "none" : "1px solid #977765",
+                            backgroundColor: currentQuestionId == 5 ? "#f4ece2" : "",
                           }}
                         />
                         <div className="option-text">
@@ -221,10 +224,20 @@ const Quiz = () => {
                   ))}
               </Row>
               {currentQuestionId == 3 ? (
-                <Button className="action-button none-btn" variant="default" onClick={() => nextQuestion("")}>
-                  Not sure
-                </Button>
-              ) : (<div></div>)}
+                  <div>
+                    <Button className="action-button none-btn mb-3" variant="default">
+                      Not sure
+                    </Button>
+                    <p className="full-black">(don't worry, we'll make a pick based on your other responses)</p>
+                  </div>
+              ) : currentQuestionId == 5 ? 
+                <div>
+                    <Button className="action-button none-btn mb-3" variant="default">
+                      Skip it
+                    </Button>
+                    <p className="full-black">I want it full black</p>
+                </div>
+              : (<div></div>)}
             </div>
           </div>
           <div className="progress-tracker my-5">
