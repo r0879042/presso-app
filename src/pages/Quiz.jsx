@@ -225,14 +225,14 @@ const Quiz = () => {
               </Row>
               {currentQuestionId == 3 ? (
                   <div>
-                    <Button className="action-button none-btn mb-3" variant="default">
+                    <Button className="action-button none-btn mb-3" variant="default" onClick={() => nextQuestion("")}>
                       Not sure
                     </Button>
                     <p className="full-black">(don't worry, we'll make a pick based on your other responses)</p>
                   </div>
               ) : currentQuestionId == 5 ? 
                 <div>
-                    <Button className="action-button none-btn mb-3" variant="default">
+                    <Button className="action-button none-btn mb-3" variant="default" onClick={() => nextQuestion("")}>
                       Skip it
                     </Button>
                     <p className="full-black">I want it full black</p>
