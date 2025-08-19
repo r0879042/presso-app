@@ -61,13 +61,13 @@ const Find = ({ addToCart, setCart, cart }) => {
           className={type === "Original" ? "active" : ""}
           onClick={() => setType("Original")}
         >
-          <span className="icon">☕</span> Original
+          <span className="icon">☕</span> Original capsules
         </button>
         <button
           className={type === "Vertuo" ? "active" : ""}
           onClick={() => navigate("/vertuo")}
         >
-          <span className="icon">🛍️</span> Vertuo
+          <span className="icon">🛍️</span> Vertuo capsules
         </button>
       </div>
 
