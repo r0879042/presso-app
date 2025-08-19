@@ -65,14 +65,14 @@ const Vertuo = ({addToCart, setCart, cart}) => {
           className={type === "Original" ? "active" : ""}
           onClick={() => navigate("/find")}
         >
-          <span className="icon">☕</span> Original
+          <span className="icon">☕</span> Original capsules
         </button>
         <button
           className={type === "Vertuo" ? "active" : ""}
           onClick={() => setType("Vertuo")}
           
         >
-          <span className="icon">🛍️</span> Vertuo
+          <span className="icon">🛍️</span> Vertuo capsules
         </button>
       </div>
 
