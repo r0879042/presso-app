@@ -92,7 +92,7 @@
                 .option-image {
                     width: 10vw;
                     position: absolute;
-                    right: -40px;
+                    right: 10px;
                     top: 50%;
                     transform: translateY(-50%);
                     z-index: 0;
@@ -100,11 +100,7 @@
                     max-width: 300px;
 
                     @include mixins.respond-to('phone') {
-                        width: 20vw;
-                    }
-
-                    @include mixins.respond-to('tablet') {
-                        width: 20vw;
+                        width: 16vw;
                     }
                 }
             }

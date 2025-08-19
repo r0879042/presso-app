@@ -55,7 +55,7 @@ const HomePage = () => {
                         <Card className="option-card shadow-sm" onClick={() => navigate('/sessioncode')}>
                             <Card.Body>
                                 <Card.Title className="option-title">Code</Card.Title>
-                                <Card.Text className="option-text">Enter the code on your receipt to buy the coffee you tasted</Card.Text>
+                                <Card.Text className="option-text">Enter the code on your QR code phonescreen to buy the coffee you tasted</Card.Text>
                                 <img src={code} alt="Code" className="option-image" />
                             </Card.Body>
                         </Card>
